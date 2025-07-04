@@ -11,7 +11,7 @@ const GameHorizontal: React.FC<IGameProps> = ({ data }) => {
     <Link
       key={data.id}
       href={data.slug}
-      className="w-full h-full flex items-center flex-col bg-orange-400/90 shadow-sm lg:shadow-md transform transition-transform hover:scale-105 rounded-lg lg:rounded-2xl hover:shadow-gray-200 overflow-hidden p-2 lg:p-3"
+      className="w-full h-full flex items-center flex-col bg-orange-400/90 shadow-sm lg:shadow-md transform transition-transform hover:scale-105 rounded-lg overflow-hidden p-2 lg:p-3"
     >
       <div className="w-full h-full flex gap-2 relative">
         <Image

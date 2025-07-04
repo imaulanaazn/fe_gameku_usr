@@ -231,7 +231,7 @@ const Header = () => {
                       className={`border-b-2 ${
                         currentPath === link.url
                           ? "border-primary-900"
-                          : "border-white"
+                          : "border-transparent"
                       } border-solid py-3`}
                     >
                       <Link href={link.url}>{link.name}</Link>
@@ -243,7 +243,7 @@ const Header = () => {
 
             <div className="right-side flex gap-6 lg:gap-4 relative items-center">
               <div
-                className="search-bar w-full relative"
+                className="search-bar w-full relative bg-transparent"
                 ref={modalContainerRef}
                 tabIndex={0}
                 onFocus={handleFocus}
@@ -268,6 +268,58 @@ const Header = () => {
                 />
               </div>
 
+              {/* Show profile icon when user is logged in */}
+              {isLogged ? (
+                <div
+                  className="relative hidden md:block"
+                  onMouseEnter={handleDropdownToggle}
+                  onMouseLeave={handleDropdownToggle}
+                >
+                  <button className="h-full w-auto rounded-full aspect-square">
+                    <Image
+                      src={user.image || "/images/user-fallback.png"}
+                      alt="user profile"
+                      width={50}
+                      height={50}
+                      objectFit="cover"
+                    />
+                  </button>
+                  <div
+                    className={`${
+                      !isDropdownOpen && "hidden"
+                    } absolute top-0 pt-14 right-0 z-10 w-max`}
+                  >
+                    <div className="bg-white border rounded-md shadow-lg text-slate-600 overflow-hidden">
+                      <p className="px-4 py-2 text-sm cursor-default">
+                        Sign in as {user.email}
+                      </p>
+                      <Link
+                        href={"/profile"}
+                        className="px-4 py-2 text-sm hover:bg-slate-200 cursor-pointer block"
+                      >
+                        Profile
+                      </Link>
+                      <p
+                        className="px-4 py-2 text-sm cursor-pointer hover:bg-slate-200"
+                        onClick={handleLogout}
+                      >
+                        Logout
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  {/* Show authentication button when user not authenticated */}
+                  <button className="hidden lg:inline bg-transparent lg:text-sm text-primary-900 rounded-md py-2 px-4 font-semibold lg:font-medium border border-solid border-primary-900 hover:bg-white/20">
+                    <Link href="/login">Masuk</Link>
+                  </button>
+                  <button className="hidden lg:inline bg-primary-900 lg:text-sm text-white rounded-md py-2 px-4 font-semibold lg:font-medium hover:bg-orange-500">
+                    <Link href="/register">Daftar</Link>
+                  </button>
+                </>
+              )}
+
               {/* toggle menu button only show on mobile */}
               <button
                 type="button"
@@ -290,7 +342,7 @@ const Header = () => {
         <div
           className={`mobile-menu ${
             !activeSideMenu && "translate-x-full opacity-0"
-          } lg:hidden absolute translate-x-0 opacity-100 top-18 right-0 w-10/12 md:w-1/2 h-screen bg-darkPrimary z-10 text-left px-12 shadow-sm transition-all duration-400`}
+          } lg:hidden absolute translate-x-0 opacity-100 top-18 right-0 w-10/12 md:w-1/2 h-screen bg-darkSecondary z-10 text-left px-12 shadow-sm transition-all duration-400`}
         >
           <nav>
             <ul>
@@ -306,8 +358,37 @@ const Header = () => {
                   <Link href={link.url}>{link.name}</Link>
                 </li>
               ))}
+
+              {/* Show this menu when user is logged in */}
+              {isLogged && (
+                <>
+                  <li className="font-semibold text-primary-900 text-base my-8 flex gap-4 items-center">
+                    <FontAwesomeIcon icon={faUser} />
+                    <Link href="/profile">Profile</Link>
+                  </li>
+                  <li
+                    onClick={handleLogout}
+                    className="font-semibold text-primary-900 text-base my-8 flex gap-4 items-center"
+                  >
+                    <FontAwesomeIcon icon={faRightFromBracket} />
+                    <Link href="/#">Logout</Link>
+                  </li>
+                </>
+              )}
             </ul>
           </nav>
+
+          {/* Show this authentication button when user is not logged in */}
+          {!isLogged && (
+            <div className="auth-buttons flex gap-2 mt-6 md:hidden">
+              <button className="text-primary-900 flex-1 w-full font-semibold border border-solid border-primary-900 rounded-md py-2 hover:bg-white/20">
+                <Link href="/login">Masuk</Link>
+              </button>
+              <button className="bg-primary-900 text-white rounded-md py-2 flex-1 w-full font-semibold hover:bg-black hover:text-white">
+                <Link href="/register">Daftar</Link>
+              </button>
+            </div>
+          )}
         </div>
       </header>
     </>

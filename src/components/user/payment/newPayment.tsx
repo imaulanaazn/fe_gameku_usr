@@ -11,6 +11,7 @@ import {
   Button,
   Chip,
   Alert,
+  Modal,
 } from "@mui/material";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
@@ -29,6 +30,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoneyBill1Wave } from "@fortawesome/free-solid-svg-icons";
 import PaymentInstructionModal from "./PaymentInstructionModal";
 import { faCopy } from "@fortawesome/free-regular-svg-icons";
+import FeedbackModal from "../PaymentSuccessPage/FeedbackModal";
 
 const getStatusPayment = (status: OrderStatuses, expiredAt: string) => {
   let msg;
@@ -121,21 +123,6 @@ const NewPayment = ({ invoices }: { invoices: IInvoice }) => {
   const canvasRef = useRef<HTMLDivElement>(null);
   const [openModal, setOpenModal] = React.useState(false);
 
-  useEffect(() => {
-    // Handle navigation based on payment status
-    if (
-      invoices.order.status === OrderStatuses.SUCCESS ||
-      order?.order.status === OrderStatuses.SUCCESS
-    ) {
-      router.push(`/payment-success/${invoices.order.invoiceId}`);
-    }
-  }, [
-    invoices.order.status,
-    order?.order.status,
-    invoices.order.invoiceId,
-    router,
-  ]);
-
   const handleTooltip = (bool: boolean) => {
     setOpen(bool);
   };
@@ -212,13 +199,16 @@ const NewPayment = ({ invoices }: { invoices: IInvoice }) => {
         await getOrder(true);
       }
     }, 5000);
-
     // Clean up interval
     return () => clearInterval(interval);
   }, [order?.order.status, isFinished, invoices.order.invoiceId]);
 
   return (
     <>
+      {order?.order.status === OrderStatuses.SUCCESS && (
+        <FeedbackModal orderId={invoices?.order.invoiceId} />
+      )}
+
       <PaymentInstructionModal
         setOpen={() => setOpenModal(false)}
         open={openModal}
@@ -258,14 +248,14 @@ const NewPayment = ({ invoices }: { invoices: IInvoice }) => {
                   <Box
                     sx={{
                       marginBottom: 4,
-                      backgroundColor: "#fb923c21",
+                      backgroundColor: "#ffffff21",
                       padding: 4,
                       borderRadius: 1,
                     }}
                   >
                     <Typography
                       variant="body1"
-                      sx={{ fontWeight: 600, color: "#fb923ce6" }}
+                      sx={{ fontWeight: 600, color: "#ffffff" }}
                     >
                       Informasi Produk
                     </Typography>
@@ -430,14 +420,14 @@ const NewPayment = ({ invoices }: { invoices: IInvoice }) => {
                   <Box
                     sx={{
                       marginBottom: 4,
-                      backgroundColor: "#fb923c21",
+                      backgroundColor: "#ffffff21",
                       padding: 4,
                       borderRadius: 1,
                     }}
                   >
                     <Typography
                       variant="body1"
-                      sx={{ fontWeight: 600, color: "#fb923ce6" }}
+                      sx={{ fontWeight: 600, color: "#ffffff" }}
                     >
                       Informasi Pesanan
                     </Typography>
@@ -585,14 +575,14 @@ const NewPayment = ({ invoices }: { invoices: IInvoice }) => {
                   <Box
                     sx={{
                       marginBottom: 4,
-                      backgroundColor: "#fb923c21",
+                      backgroundColor: "#ffffff21",
                       padding: 4,
                       borderRadius: 1,
                     }}
                   >
                     <Typography
                       variant="body1"
-                      sx={{ fontWeight: 600, color: "#fb923ce6" }}
+                      sx={{ fontWeight: 600, color: "#ffffff" }}
                     >
                       Informasi Pembayaran
                     </Typography>
@@ -756,7 +746,12 @@ const NewPayment = ({ invoices }: { invoices: IInvoice }) => {
                 ) &&
                   order.order.status === OrderStatuses.PENDING_PAYMENT && (
                     <Paper
-                      sx={{ position: "relative", padding: 6, borderRadius: 2 }}
+                      sx={{
+                        position: "relative",
+                        padding: 6,
+                        borderRadius: 2,
+                        backgroundColor: "#161721",
+                      }}
                       elevation={0}
                     >
                       <Box>
@@ -768,7 +763,7 @@ const NewPayment = ({ invoices }: { invoices: IInvoice }) => {
                           }}
                         >
                           <Typography
-                            sx={{ color: "#374151", fontWeight: 600 }}
+                            sx={{ color: "#ffffff", fontWeight: 600 }}
                           >
                             {getTitlePayment(order.payment.action)}
                           </Typography>
@@ -880,7 +875,7 @@ const NewPayment = ({ invoices }: { invoices: IInvoice }) => {
                                         variant="outlined"
                                         sx={{
                                           width: "100%",
-                                          backgroundColor: "#fb923c21",
+                                          backgroundColor: "#ffffff21",
                                           display: "flex",
                                           gap: 2,
                                         }}
@@ -1023,7 +1018,7 @@ function PaymentPendingCountdown({
           fontSize={{ xs: 14, lg: 16 }}
           color={"#374151"}
         >
-          Gass Selesaikan Transaksimu!!
+          Yok Selesaikan Transaksimu!!
         </Typography>
         <Typography fontSize={{ xs: 14, lg: 16 }} color={"gray.900"}>
           Waktu Tersisa{"  "}

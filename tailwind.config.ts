@@ -35,7 +35,7 @@ const config: Config = {
         "neutral-50": "#F9FAFB",
       },
       gridTemplateColumns: {
-        "auto-lg": "repeat(auto-fill, minmax(170px, 1fr))",
+        "auto-lg": "repeat(auto-fill, minmax(160px, 1fr))",
         "auto-md": "repeat(auto-fill, minmax(140px, 1fr))",
         "auto-sm": "repeat(auto-fill, minmax(100px, 1fr))",
         "auto-xs": "repeat(auto-fill, minmax(75px, 1fr))",

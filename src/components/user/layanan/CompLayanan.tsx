@@ -24,12 +24,12 @@ const CompLayanan: React.FC<ICompLayananProps> = ({
   }
   return (
     <>
-      <Container className="sticky top-[4.5rem] z-40 mt-4 md:mt-6 pb-2.5">
+      <Container className="sticky top-[4.5rem] z-40 mt-10 md:mt-16 pb-2.5 bg-darkPrimary">
         <Swiper
           modules={[Navigation]}
           slidesPerView={"auto"}
           freeMode={true}
-          spaceBetween={8}
+          spaceBetween={10}
         >
           {defaultCategory.concat(gameCategories).map((data) => (
             <SwiperSlide key={data.id} className="category">

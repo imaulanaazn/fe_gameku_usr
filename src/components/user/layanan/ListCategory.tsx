@@ -21,8 +21,8 @@ const ListCategory: React.FC<IDataProps> = ({ data }) => {
       className={`${
         category.id === data.id
           ? "bg-primary-900 text-white font-medium"
-          : "border border-white/70 text-white/70"
-      } px-5 py-2.5 rounded-full md:text-sm cursor-pointer text-xs w-max shrink-0`}
+          : "border border-white/60 text-white/60"
+      } px-4 py-2 rounded-full md:text-sm cursor-pointer text-xs w-max shrink-0`}
     >
       {data.name}
     </div>

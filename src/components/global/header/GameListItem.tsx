@@ -13,7 +13,7 @@ const GameListItem: React.FC<IGameProps> = ({ data }) => {
       href={`/${data.slug}`}
       className="w-full transform transition-all rounded-lg overflow-hidden"
     >
-      <div className="w-full relative flex items-center gap-3 py-1.5 hover:bg-primary-50 group">
+      <div className="w-full relative flex items-center gap-3 p-1.5 hover:bg-white/10 group rounded-md">
         <Image
           src={data.logoUrl}
           alt={`Logo Game Gasskeun Topup ${data.name}`}
@@ -22,7 +22,7 @@ const GameListItem: React.FC<IGameProps> = ({ data }) => {
           sizes="5vh"
           className="h-10 w-auto rounded-md object-cover aspect-square"
         />
-        <h3 className="text-xs md:text-sm text-neutral-800 group-hover:text-primary-900">
+        <h3 className="text-xs md:text-sm text-white/90 group-hover:text-primary-900">
           {data.name}
         </h3>
       </div>

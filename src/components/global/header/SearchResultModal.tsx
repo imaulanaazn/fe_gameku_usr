@@ -69,23 +69,19 @@ const SearchResultModal = ({
         isModalOpen ? "block" : "hidden"
       } absolute top-14 left-0 w-full h-auto z-50`}
     >
-      <div className="result-container bg-white w-full mx-auto shadow-md rounded-lg overflow-hidden">
+      <div className="result-container bg-darkSecondary w-full mx-auto shadow-md rounded-lg overflow-hidden">
         <div className="result p-3 h-max">
           {!searchKeyword && (
-            <h2 className="font-semibold text-sm md:text-base text-neutral-900 pb-1">
+            <h2 className="font-semibold text-sm md:text-base text-white pb-1">
               Popular Games
             </h2>
           )}
 
           {searchKeyword && games.length < 1 && (
             <div className="not-found">
-              <p className="text-sm">produk yang dicari tidak tersedia </p>
-              <Link
-                className="text-sm text-primary-900"
-                href="https://api.whatsapp.com/send?phone=628112065672"
-              >
-                Beri kami saran produk
-              </Link>
+              <p className="text-sm text-white">
+                produk yang dicari tidak tersedia{" "}
+              </p>
             </div>
           )}
 
