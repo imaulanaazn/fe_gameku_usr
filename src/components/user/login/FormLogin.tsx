@@ -152,8 +152,8 @@ const FormLogin = () => {
         />
       </div>
       {loading ? (
-        <div className="w-full bg-slate-100 text-center py-3 px-4 rounded-md text-base font-semibold cursor-wait">
-          <FontAwesomeIcon icon={faSpinner} size="1x" spinPulse />
+        <div className="w-full py-3 bg-gray-400 text-white cursor-wait text-center rounded-md">
+          <FontAwesomeIcon icon={faSpinner} size="2x" spinPulse />
         </div>
       ) : (
         <button

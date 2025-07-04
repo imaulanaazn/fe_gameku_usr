@@ -272,7 +272,7 @@ const FormRegister = () => {
         </p>
       )}
       {loading ? (
-        <div className="w-full py-5 bg-gray-400 text-black cursor-wait">
+        <div className="w-full py-3 bg-gray-400 text-white cursor-wait text-center rounded-md">
           <FontAwesomeIcon icon={faSpinner} size="2x" spinPulse />
         </div>
       ) : allowed ? (

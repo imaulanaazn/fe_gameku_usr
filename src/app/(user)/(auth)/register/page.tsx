@@ -41,8 +41,8 @@ const Register = async () => {
             </p> */}
           </div>
           <FormRegister />
-          <p className=" text-sm mt-5">
-            Belum punya akun? Silahkan untuk{" "}
+          <p className="text-white text-sm mt-5">
+            Sudah punya akun? Silahkan untuk{" "}
             <Link href="/login" className="underline text-primary-900">
               Masuk
             </Link>
