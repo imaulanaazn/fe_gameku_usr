@@ -19,8 +19,6 @@ const FormRegister = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState<number | null>(null);
-  const [otp, setOtp] = useState("");
-  const [disableBtnReqOtp, setDisableBtnReqOtp] = useState(true);
   const [user, setUser] = useRecoilState(userState);
 
   const [allowed, setAllowed] = useState(false);
@@ -46,7 +44,6 @@ const FormRegister = () => {
             name,
             mobileNumber,
             password,
-            otp,
           }),
         }
       );
@@ -106,66 +103,6 @@ const FormRegister = () => {
     }
   };
 
-  const requestOtp = async () => {
-    const queryParams = new URLSearchParams();
-    queryParams.append("type", "register");
-    queryParams.append("mobileNumber", mobileNumber);
-
-    const toastId = toast.loading("Request Otp...");
-    const req = await fetch(
-      process.env.NEXT_PUBLIC_BASE_URL + "/v1/otp?" + queryParams,
-      {
-        method: "GET",
-        credentials: "include",
-        headers: {
-          "content-type": "application/json",
-          "ngrok-skip-browser-warning": "true",
-        },
-      }
-    );
-
-    const res = await req.json();
-    if (req.ok) {
-      toast.update(toastId, {
-        render: "Berhasil Request Otp",
-        type: "success",
-        isLoading: false,
-        position: "top-right",
-        autoClose: 3000,
-      });
-    } else {
-      toast.update(toastId, {
-        render: res.message,
-        type: "error",
-        isLoading: false,
-        position: "top-right",
-        autoClose: 3000,
-      });
-    }
-
-    const waitingDate = dayjs(
-      res?.waitingDate || dayjs().add(60, "second")
-    ).diff(dayjs(), "second");
-    setTimeRemaining(waitingDate);
-  };
-
-  const handleRequestOTP = () => {
-    if (!mobileNumber) {
-      return toast.warn("Silahkan isi terlebih dahulu nomor whatsapp", {
-        isLoading: false,
-        position: "top-right",
-        autoClose: 3000,
-      });
-    }
-
-    requestOtp();
-  };
-  useEffect(() => {
-    const phoneRegex = /^(\+62|0)[0-9]{9,12}$/;
-
-    setDisableBtnReqOtp(!phoneRegex.test(mobileNumber));
-  }, [mobileNumber]);
-
   useEffect(() => {
     let interval: NodeJS.Timeout | undefined;
 
@@ -189,14 +126,13 @@ const FormRegister = () => {
       mobileNumber &&
       password &&
       confirmPassword &&
-      password === confirmPassword &&
-      otp
+      password === confirmPassword
     ) {
       setAllowed(true);
     } else {
       setAllowed(false);
     }
-  }, [email, name, mobileNumber, password, confirmPassword, otp]);
+  }, [email, name, mobileNumber, password, confirmPassword]);
 
   useEffect(() => {
     if (password && confirmPassword) {
@@ -248,14 +184,14 @@ const FormRegister = () => {
       <div className="mb-4">
         <label
           htmlFor="email"
-          className="font-medium text-base text-neutral-900 inline-block mb-1.5"
+          className="font-medium text-base text-white inline-block mb-1.5"
         >
           Email
         </label>
         <input
           type="email"
           id="email"
-          className="w-full py-3 px-4 bg-slate-100 rounded-md text-sm placeholder:text-sm overflow-hidden border border-solid border-white focus:bg-white focus:ring-0 focus:border-primary-900"
+          className="w-full py-3 px-4 text-white bg-transparent rounded-md text-sm placeholder:text-sm overflow-hidden border border-solid border-white/70 focus:ring-0 focus:border-primary-900"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -265,14 +201,14 @@ const FormRegister = () => {
       <div className="mb-4">
         <label
           htmlFor="name"
-          className="font-medium text-base text-neutral-900 inline-block mb-1.5"
+          className="font-medium text-base text-white inline-block mb-1.5"
         >
           Name
         </label>
         <input
           type="text"
           id="name"
-          className="w-full py-3 px-4 bg-slate-100 rounded-md text-sm placeholder:text-sm overflow-hidden border border-solid border-white focus:bg-white focus:ring-0 focus:border-primary-900"
+          className="w-full py-3 px-4 text-white bg-transparent rounded-md text-sm placeholder:text-sm overflow-hidden border border-solid border-white/70 focus:ring-0 focus:border-primary-900"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
@@ -282,14 +218,14 @@ const FormRegister = () => {
       <div className="mb-4">
         <label
           htmlFor="mobileNumber"
-          className="font-medium text-base text-neutral-900 inline-block mb-1.5"
+          className="font-medium text-base text-white inline-block mb-1.5"
         >
           Phone Number
         </label>
         <input
           type="text"
           id="mobileNumber"
-          className="w-full py-3 px-4 bg-slate-100 rounded-md text-sm placeholder:text-sm overflow-hidden border border-solid border-white focus:bg-white focus:ring-0 focus:border-primary-900"
+          className="w-full py-3 px-4 text-white bg-transparent rounded-md text-sm placeholder:text-sm overflow-hidden border border-solid border-white/70 focus:ring-0 focus:border-primary-900"
           value={mobileNumber}
           onChange={(e) => setMobileNumber(e.target.value)}
           required
@@ -299,81 +235,36 @@ const FormRegister = () => {
       <div className="mb-4">
         <label
           htmlFor="password"
-          className="font-medium text-base text-neutral-900 inline-block mb-1.5"
+          className="font-medium text-base text-white inline-block mb-1.5"
         >
           Password
         </label>
         <input
           type="password"
           id="password"
-          className="w-full py-3 px-4 bg-slate-100 rounded-md text-sm placeholder:text-sm overflow-hidden border border-solid border-white focus:bg-white focus:ring-0 focus:border-primary-900"
+          className="w-full py-3 px-4 text-white bg-transparent rounded-md text-sm placeholder:text-sm overflow-hidden border border-solid border-white/70 focus:ring-0 focus:border-primary-900"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
           placeholder="Password"
         />
       </div>
-      <div className="mb-4">
+      <div className="mb-8">
         <label
           htmlFor="confirmPassword"
-          className="font-medium text-base text-neutral-900 inline-block mb-1.5"
+          className="font-medium text-base text-white inline-block mb-1.5"
         >
           Konfirmasi Password
         </label>
         <input
           type="password"
           id="confirmPassword"
-          className="w-full py-3 px-4 bg-slate-100 rounded-md text-sm placeholder:text-sm overflow-hidden border border-solid border-white focus:bg-white focus:ring-0 focus:border-primary-900"
+          className="w-full py-3 px-4 text-white bg-transparent rounded-md text-sm placeholder:text-sm overflow-hidden border border-solid border-white/70 focus:ring-0 focus:border-primary-900"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
           placeholder="Konfirmasi Password"
         />
-      </div>
-      <div>
-        <label
-          htmlFor="otp"
-          className="font-medium text-base text-neutral-900 inline-block mb-1.5"
-        >
-          OTP
-        </label>
-        <div
-          className={`${
-            differentPassword ? "mb-4" : "mb-6"
-          } flex justify-between gap-4`}
-        >
-          <div className="w-full">
-            <input
-              type="text"
-              id="otp"
-              className="w-full py-3 px-4 bg-slate-100 rounded-md text-sm placeholder:text-sm overflow-hidden border border-solid border-white focus:bg-white focus:ring-0 focus:border-primary-900"
-              value={otp}
-              onChange={(e) => setOtp(e.target.value)}
-              required
-              placeholder="Kode OTP"
-            />
-          </div>
-          <div>
-            {timeRemaining && timeRemaining > 0 ? (
-              <div className="h-full w-12 text-black flex items-center justify-center cursor-not-allowed rounded-md bg-slate-100">
-                {timeRemaining}
-              </div>
-            ) : (
-              <button
-                type="button"
-                disabled={disableBtnReqOtp}
-                onClick={() => handleRequestOTP()}
-                className={`shrink-0 h-full w-max ${
-                  disableBtnReqOtp
-                    ? "bg-primary-300 text-white cursor-not-allowed px-4 border-0 rounded-md text-sm"
-                    : "bg-primary-900 cursor-pointer py-3 px-4 border-0 rounded-md text-sm hover:bg-black transition-all text-white"
-                }`}
-              >
-                Request OTP
-              </button>
-            )}
-          </div>
-        </div>
       </div>
       {differentPassword && (
         <p className="text-white text-start mb-2">

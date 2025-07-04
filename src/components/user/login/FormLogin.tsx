@@ -15,17 +15,11 @@ const FormLogin = () => {
   const [data, setData] = useState({
     username: "",
     password: "",
-    otp: "",
   });
-  const [user, setUser] = useRecoilState(userState);
 
   const [errorMessage, setErrorMessage] = useState("");
   const [allowed, setAllowed] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [isPhoneNumber, setIsPhoneNumber] = useState(false);
-  const [isEmail, setIsEmail] = useState(false);
-  const [timeRemaining, setTimeRemaining] = useState<number | null>();
-  const [disableBtnReqOtp, setDisableBtnReqOtp] = useState(true);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -58,7 +52,6 @@ const FormLogin = () => {
         router.push("/");
         localStorage.setItem("auth", JSON.stringify({ login: true }));
         localStorage.setItem("user", JSON.stringify(res));
-        setUser(res);
         toast.update(toastId, {
           render: "Berhasil Login",
           type: "success",
@@ -88,7 +81,6 @@ const FormLogin = () => {
     if (responseCustomer.ok) {
       localStorage.setItem("auth", JSON.stringify({ login: true }));
       localStorage.setItem("user", JSON.stringify(res));
-      setUser(res);
 
       return true;
     } else {
@@ -97,106 +89,13 @@ const FormLogin = () => {
     }
   };
 
-  const requestOtp = async () => {
-    const queryParams = new URLSearchParams();
-    queryParams.append("type", "login");
-    queryParams.append(isEmail ? "email" : "mobileNumber", data.username);
-
-    const toastId = toast.loading("Request Otp...");
-    const req = await fetch(
-      process.env.NEXT_PUBLIC_BASE_URL + "/v1/otp?" + queryParams,
-      {
-        method: "GET",
-        credentials: "include",
-        headers: {
-          "content-type": "application/json",
-          "ngrok-skip-browser-warning": "true",
-        },
-      }
-    );
-
-    const res = await req.json();
-    if (req.ok) {
-      toast.update(toastId, {
-        render: "Berhasil Request Otp",
-        type: "success",
-        isLoading: false,
-        position: "top-right",
-        autoClose: 3000,
-      });
-    } else {
-      toast.update(toastId, {
-        render: res.message,
-        type: "error",
-        isLoading: false,
-        position: "top-right",
-        autoClose: 3000,
-      });
-    }
-
-    const waitingDate = dayjs(
-      res?.waitingDate || dayjs().add(60, "second")
-    ).diff(dayjs(), "second");
-    setTimeRemaining(waitingDate);
-  };
-
-  const handleRequestOTP = () => {
-    if (!data.username) {
-      return toast.warn(
-        "Silahkan isi terlebih dahulu nomor whatsapp atau email",
-        {
-          isLoading: false,
-          position: "top-right",
-          autoClose: 3000,
-        }
-      );
-    }
-
-    if (!isPhoneNumber && !isEmail) {
-      return toast.error("Email atau nomor whatsapp tidak valid", {
-        isLoading: false,
-        position: "top-right",
-        autoClose: 3000,
-      });
-    }
-
-    requestOtp();
-  };
-
   useEffect(() => {
-    if (!data.username || !data.password || !data.otp) {
+    if (!data.username || !data.password) {
       setAllowed(false);
     } else {
       setAllowed(true);
     }
-  }, [data.username, data.password, data.otp]);
-
-  useEffect(() => {
-    const phoneRegex = /^(\+62|0)[0-9]{9,12}$/;
-    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-
-    setIsPhoneNumber(phoneRegex.test(data.username));
-    setIsEmail(emailRegex.test(data.username));
-    setDisableBtnReqOtp(
-      !phoneRegex.test(data.username) && !emailRegex.test(data.username)
-    );
-  }, [data.username]);
-
-  useEffect(() => {
-    let interval: NodeJS.Timeout | undefined;
-
-    if (timeRemaining && timeRemaining > 0) {
-      interval = setInterval(() => {
-        setTimeRemaining((prevTime) => (prevTime ? prevTime - 1 : null));
-      }, 1000);
-    }
-
-    return () => {
-      if (interval !== undefined) {
-        clearInterval(interval);
-      }
-    };
-  }, [timeRemaining]);
+  }, [data.username, data.password]);
 
   useEffect(() => {
     getMe();
@@ -217,14 +116,14 @@ const FormLogin = () => {
       <div className="mb-4">
         <label
           htmlFor="username"
-          className="font-medium text-base text-neutral-900 inline-block mb-1.5"
+          className="font-medium text-base text-white inline-block mb-1.5"
         >
           Username
         </label>
         <input
           type="text"
           id="username"
-          className="w-full py-3 px-4 bg-slate-100 rounded-md text-sm placeholder:text-sm overflow-hidden border border-solid border-white focus:bg-white focus:ring-0 focus:border-primary-900"
+          className="w-full py-3 px-4 text-white bg-transparent rounded-md text-sm placeholder:text-sm overflow-hidden border border-solid border-white/70 focus:ring-0 focus:border-primary-900"
           value={data.username}
           onChange={(e) =>
             setData((prev) => ({ ...prev, username: e.target.value }))
@@ -233,17 +132,17 @@ const FormLogin = () => {
           placeholder="Whatsapp / Email"
         />
       </div>
-      <div className="mb-4">
+      <div className="mb-8">
         <label
           htmlFor="password"
-          className="font-medium text-base text-neutral-900 inline-block mb-1.5"
+          className="font-medium text-base text-white inline-block mb-1.5"
         >
           Password
         </label>
         <input
           type="password"
           id="password"
-          className="w-full py-3 px-4 bg-slate-100 rounded-md text-sm placeholder:text-sm overflow-hidden border border-solid border-white focus:bg-white focus:ring-0 focus:border-primary-900"
+          className="w-full py-3 px-4 text-white bg-transparent rounded-md text-sm placeholder:text-sm overflow-hidden border border-solid border-white/70 focus:ring-0 focus:border-primary-900"
           value={data.password}
           onChange={(e) =>
             setData((prev) => ({ ...prev, password: e.target.value }))
@@ -252,64 +151,17 @@ const FormLogin = () => {
           placeholder="Password"
         />
       </div>
-      <div>
-        <label
-          htmlFor="otp"
-          className="font-medium text-base text-neutral-900 inline-block mb-1.5"
-        >
-          OTP
-        </label>
-        <div className="mb-6 flex justify-between gap-4">
-          <div className="w-full">
-            <input
-              type="text"
-              id="otp"
-              className="w-full py-3 px-4 bg-slate-100 rounded-md text-sm placeholder:text-sm overflow-hidden border border-solid border-white focus:bg-white focus:ring-0 focus:border-primary-900"
-              value={data.otp}
-              onChange={(e) =>
-                setData((prev) => ({ ...prev, otp: e.target.value }))
-              }
-              required
-              placeholder="Kode OTP"
-            />
-          </div>
-          <div>
-            {timeRemaining && timeRemaining > 0 ? (
-              <div className="h-full w-12 text-black flex items-center justify-center cursor-not-allowed rounded-md bg-slate-100">
-                {timeRemaining}
-              </div>
-            ) : (
-              <button
-                type="button"
-                disabled={disableBtnReqOtp}
-                onClick={() => handleRequestOTP()}
-                className={`shrink-0 h-full w-max ${
-                  disableBtnReqOtp
-                    ? "bg-primary-300 text-white cursor-not-allowed px-4 border-0 rounded-md text-sm"
-                    : "text-white bg-primary-900 cursor-pointer py-3 px-4 border-0 rounded-md text-sm hover:bg-black hover:text-white transition-all"
-                }`}
-              >
-                Request OTP
-              </button>
-            )}
-          </div>
-        </div>
-      </div>
       {loading ? (
         <div className="w-full bg-slate-100 text-center py-3 px-4 rounded-md text-base font-semibold cursor-wait">
           <FontAwesomeIcon icon={faSpinner} size="1x" spinPulse />
         </div>
-      ) : allowed ? (
+      ) : (
         <button
           type="submit"
           className="text-center bg-primary-900 text-white w-full py-3 px-4 rounded-md text-base font-semibold hover:bg-black hover:text-white transition-all"
         >
           Masuk
         </button>
-      ) : (
-        <div className="text-center bg-primary-300 text-slate-100 cursor-not-allowed w-full py-3 px-4 rounded-md text-base font-semibold">
-          Masuk
-        </div>
       )}
     </form>
   );

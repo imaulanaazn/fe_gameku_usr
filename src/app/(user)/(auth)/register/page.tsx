@@ -12,9 +12,6 @@ const Register = async () => {
   if (statusWebsite.data[0].value === "maintenance") {
     return <Maintenance />;
   }
-  const gasskeunLogo = await sendRequest<{ value: string }[]>(
-    "/v1/config?type=logo"
-  );
   const bg = await sendRequest<{ value: string }[]>(
     "/v1/config?type=bg_register"
   );
@@ -27,21 +24,21 @@ const Register = async () => {
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
       }}
-      className="w-full md:h-screen mx-auto flex items-center"
+      className="w-full h-screen mx-auto flex items-center"
     >
-      <div className="mx-auto text-center w-full h-full lg:h-max flex items-center lg:items-stretch justify-center lg:justify-center overflo-hidden">
-        <div className="left-side bg-white w-full md:w-[25rem] lg:w-96 xl:w-[30rem] h-full md:h-max lg:h-[85vh] px-10 py-10 xl:px-16 xl:py-16 flex flex-col justify-center lg:justify-start overflow-y-auto">
-          <div className="flex flex-col items-center gap-3 mb-8 xl:mb-10">
-            <p className="xl:hidden font-light text-xs tracking-widest">
-              GASSKEUN TOPUP
+      <div className="mx-auto text-center w-max h-max rounded-xl lg:h-max flex items-center lg:items-stretch justify-center overflow-hidden">
+        <div className="left-side bg-darkPrimary w-full md:w-[25rem] lg:w-96 h-full md:h-max px-10 py-10 xl:px-12 xl:py-12 flex flex-col justify-center">
+          <div className="flex flex-col items-center gap-3 mb-8">
+            <p className="xl:hidden font-light text-xs tracking-widest text-white">
+              TOPUP GAMEKU
             </p>
-            <h1 className="text-center text-neutral-900 text-3xl font-bold">
+            <h1 className="text-center text-white text-2xl font-bold">
               Daftar Akun
             </h1>
-            <p className="hidden xl:block text-left">
+            {/* <p className="hidden xl:block text-left text-white/80">
               Nggak susah kok, kamu cuma tinggal masukin beberapa data aja terus
               langsung jadi deh!
-            </p>
+            </p> */}
           </div>
           <FormRegister />
           <p className=" text-sm mt-5">
@@ -51,21 +48,21 @@ const Register = async () => {
             </Link>
           </p>
         </div>
-        <div className="right-side hidden lg:flex w-96 xl:w-[30rem] h-auto px-10 py-10 xl:px-16 xl:py-16 bg-primary-900 items-center justify-center">
+        <div className="right-side hidden lg:flex w-96 h-auto px-10 py-10 xl:px-12 xl:py-12 bg-primary-900 items-center justify-center">
           <div className="h-max w-max">
             <Image
-              src={gasskeunLogo.data[0].value}
+              src={"/images/topup_gameku_logo.jpg"}
               width={120}
               height={120}
               alt="gasskeun top up logo"
               className="mx-auto"
             />
             <p className="text-xs text-white text-left mt-16 mb-4">
-              GASKEUN TOP UP
+              TOPUP GAMEKU
             </p>
             <h4 className="text-white text-left xl:text-lg">
-              Top up berbagai kebutuhan digital mu lebih mudah menggunakan
-              gasskeun top up
+              Top up berbagai kebutuhan digital mu lebih mudah menggunakan Topup
+              Gameku
             </h4>
           </div>
         </div>
