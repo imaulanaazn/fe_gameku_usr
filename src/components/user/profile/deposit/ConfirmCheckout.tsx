@@ -24,7 +24,7 @@ const style = {
   width: "90%",
   maxHeight: "80vh",
   overflowY: "auto",
-  bgcolor: "background.paper",
+  bgcolor: "#161721",
   boxShadow: 24,
   p: 4,
 
@@ -147,7 +147,7 @@ const ConfirmCheckout = ({
                 sx: {
                   lineHeight: "1.2 !important",
                   letterSpacing: "0.31px !important",
-                  color: "#1F2937",
+                  color: "#ffffff",
                   fontWeight: "800",
                 },
               }}
@@ -156,7 +156,7 @@ const ConfirmCheckout = ({
                   size="small"
                   aria-label="settings"
                   className="card-more-options"
-                  sx={{ color: "text.secondary" }}
+                  sx={{ color: "#ffffff" }}
                   onClick={() => onClose()}
                 >
                   <Close />
@@ -165,7 +165,7 @@ const ConfirmCheckout = ({
             />
 
             <CardContent sx={{ marginTop: 2 }}>
-              <Divider sx={{ marginY: 6 }} />
+              <Divider sx={{ marginY: 6, backgroundColor: "#ffffff70" }} />
 
               {/* <Box
                   sx={{
@@ -188,8 +188,13 @@ const ConfirmCheckout = ({
                   justifyContent: "space-between",
                 }}
               >
-                <Typography variant="body2">Jumlah Deposit</Typography>
-                <Typography variant="body2" sx={{ fontWeight: 800 }}>
+                <Typography variant="body2" sx={{ color: "#ffffff" }}>
+                  Jumlah Deposit
+                </Typography>
+                <Typography
+                  variant="body2"
+                  sx={{ fontWeight: 800, color: "#ffffff" }}
+                >
                   {currencyConverter(dataCheckout.amount)}
                 </Typography>
               </Box>
@@ -202,8 +207,13 @@ const ConfirmCheckout = ({
                   justifyContent: "space-between",
                 }}
               >
-                <Typography variant="body2">Biaya Admin</Typography>
-                <Typography variant="body2" sx={{ fontWeight: 800 }}>
+                <Typography variant="body2" sx={{ color: "#ffffff" }}>
+                  Biaya Admin
+                </Typography>
+                <Typography
+                  variant="body2"
+                  sx={{ fontWeight: 800, color: "#ffffff" }}
+                >
                   {currencyConverter(dataCheckout.feeAmount)}
                 </Typography>
               </Box>
@@ -217,8 +227,13 @@ const ConfirmCheckout = ({
                   justifyContent: "space-between",
                 }}
               >
-                <Typography variant="body2">Metode Pembayaran</Typography>
-                <Typography variant="body2" sx={{ fontWeight: 800 }}>
+                <Typography variant="body2" sx={{ color: "#ffffff" }}>
+                  Metode Pembayaran
+                </Typography>
+                <Typography
+                  variant="body2"
+                  sx={{ fontWeight: 800, color: "#ffffff" }}
+                >
                   {dataCheckout.paymentMethod.name}
                 </Typography>
               </Box>
@@ -233,8 +248,13 @@ const ConfirmCheckout = ({
                       justifyContent: "space-between",
                     }}
                   >
-                    <Typography variant="body2">Nomor OVO</Typography>
-                    <Typography variant="body2" sx={{ fontWeight: 800 }}>
+                    <Typography variant="body2" sx={{ color: "#ffffff" }}>
+                      Nomor OVO
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{ fontWeight: 800, color: "#ffffff" }}
+                    >
                       {dataCheckout.mobileNumber}
                     </Typography>
                   </Box>
@@ -248,8 +268,13 @@ const ConfirmCheckout = ({
                     justifyContent: "space-between",
                   }}
                 >
-                  <Typography variant="body2">Cashtag</Typography>
-                  <Typography variant="body2" sx={{ fontWeight: 800 }}>
+                  <Typography variant="body2" sx={{ color: "#ffffff" }}>
+                    Cashtag
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    sx={{ fontWeight: 800, color: "#ffffff" }}
+                  >
                     {dataCheckout.cashtag.startsWith("$")
                       ? dataCheckout.cashtag
                       : `$${dataCheckout.cashtag}`}
@@ -257,7 +282,7 @@ const ConfirmCheckout = ({
                 </Box>
               )}
 
-              <Divider sx={{ marginY: 6 }} />
+              <Divider sx={{ marginY: 6, backgroundColor: "#ffffff80" }} />
 
               <Box
                 sx={{
@@ -267,8 +292,13 @@ const ConfirmCheckout = ({
                   justifyContent: "space-between",
                 }}
               >
-                <Typography variant="body1">Total</Typography>
-                <Typography variant="body1" sx={{ fontWeight: 800 }}>
+                <Typography variant="body1" sx={{ color: "#ffffff" }}>
+                  Total
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{ fontWeight: 800, color: "#ffffff" }}
+                >
                   {currencyConverter(totalCheckout)}
                 </Typography>
               </Box>

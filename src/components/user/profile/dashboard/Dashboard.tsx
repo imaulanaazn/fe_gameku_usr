@@ -6,6 +6,8 @@ import Image from "next/image";
 import Link from "next/link";
 import HistoryDeposit from "./HistoryDeposit";
 import Loading from "@/components/global/loading/CompLoading";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const formatter = (data: number) => {
   return new Intl.NumberFormat("id-ID", {
@@ -41,7 +43,7 @@ const Dashboard = () => {
   const [logo, setLogo] = useState("");
   const [userFund, setUserFund] = useState({
     name: "Gasskeun Coin",
-    value: 0,
+    balance: 0,
   });
 
   const getUserBalance = async () => {
@@ -51,7 +53,7 @@ const Dashboard = () => {
     );
 
     if (balanceData) {
-      setUserFund({ name: balanceData.name, value: balanceData.value });
+      setUserFund({ name: balanceData.name, balance: balanceData.value });
     }
     setLoading(false);
   };
@@ -76,37 +78,8 @@ const Dashboard = () => {
       {loading && <Loading />}
 
       {!loading && (
-        <div className="mx-auto py-0 lg:pb-24 md:py-12 h-fit min-h-screen text-center w-full lg:p-5 text-white flex flex-col items-center">
-          <div className="w-full flex flex-col lg:flex-row justify-between items-center gap-8 mb-10 md:mb-12">
-            <div className="w-full bg-gradient-to-tr from-rose-500 to-orange-300 mx-auto rounded-lg md:rounded-xl flex items-center justify-between gap-4 py-4 px-6  md:py-6 md:px-8">
-              <div className="flex items-center gap-4 lg:gap-6">
-                <div className="w-14 h-14 rounded-full border-2 bg-white flex items-center justify-center">
-                  <Image
-                    src={logo}
-                    height={40}
-                    width={40}
-                    alt={"gasskeun logo"}
-                  />
-                </div>
-                <div>
-                  <p className="text-sm text-left mb-1">Saldomu</p>
-                  <div className="flex flex-col lg:flex-row lg:gap-2 items-start lg:items-center">
-                    <p className="text-xl font-semibold">
-                      ${formatter(userFund.value || 0)}
-                    </p>
-                    <p className="text-xs font-light">{userFund.name}</p>
-                  </div>
-                </div>
-              </div>
-              <Link
-                href="/profile/deposit"
-                className="bg-white text-primary-900 py-1 px-2 md:py-2 md:px-4 rounded-md text-sm font-medium border hover:text-white hover:bg-transparent hover:border-white"
-              >
-                Topup
-              </Link>
-            </div>
-          </div>
-
+        <div className="mx-auto py-0 lg:pb-24 h-fit min-h-screen text-center w-full text-white flex flex-col items-center">
+          <UserBalance name={userFund.name} balance={userFund.balance} />
           <HistoryTopup />
           <div className="mt-8"></div>
           <HistoryDeposit />
@@ -117,3 +90,17 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+function UserBalance({ name, balance }: { name: string; balance: number }) {
+  return (
+    <div className="w-full lg:hidden px-4 py-6 bg-orangePrimary rounded-lg shadow-md mb-8">
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-xl text-white font-semibold">Saldo Tersedia</h2>
+        <div className="bg-white rounded-md w-8 h-8 flex items-center justify-center cursor-pointer">
+          <FontAwesomeIcon icon={faPlus} className="text-orange-400" />
+        </div>
+      </div>
+      <p className="text-xl text-white text-left">Rp.{formatter(balance)}</p>
+    </div>
+  );
+}

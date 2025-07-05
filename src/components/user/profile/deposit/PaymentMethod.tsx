@@ -8,6 +8,7 @@ import {
   Tabs,
   Tab,
   Typography,
+  Divider,
 } from "@mui/material";
 import Image from "next/image";
 import { currencyConverter } from "@/lib/currencyConverter";
@@ -47,57 +48,29 @@ const accordionTitle = (category: string) => {
   return title;
 };
 
-function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ paddingX: 0, paddingY: "1rem" }}>{children}</Box>
-      )}
-    </div>
-  );
-}
-
 const PaymentMethod = ({ value, data, onChange }: any) => {
-  const [selectedTab, setSelectedTab] = React.useState(0);
-
-  const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
-    setSelectedTab(newValue);
-  };
-
-  const groupedPaymentMethods: { [category: string]: Array<IPaymentMethod> } =
-    {};
-
-  data.forEach((method: IPaymentMethod) => {
-    const unifiedCategory =
-      method.category === "1" || method.category === "2"
-        ? "1_2"
-        : method.category;
-
-    if (!groupedPaymentMethods[unifiedCategory]) {
-      groupedPaymentMethods[unifiedCategory] = [];
-    }
-
-    groupedPaymentMethods[unifiedCategory].push(method);
-  });
-
-  const categoryTabs = Object.keys(groupedPaymentMethods)
-    .sort()
-    .map((category, index) => {
-      return <Tab key={category} label={accordionTitle(category)} />;
-    });
-
-  const tabPanels = Object.entries(groupedPaymentMethods)
-    .sort()
-    .map(([category, methods], index) => (
-      <TabPanel value={selectedTab} index={index} key={category}>
+  return (
+    <Card
+      sx={{
+        marginTop: 6,
+        borderRadius: "0.75rem",
+        background: `#161721 url(/images/topup-form-step-2.svg) no-repeat right top`,
+        backgroundSize: "150px",
+      }}
+    >
+      <CardHeader
+        title="Metode Pembayaran"
+        titleTypographyProps={{
+          sx: {
+            mb: 2.5,
+            lineHeight: "2rem !important",
+            letterSpacing: "0.15px !important",
+            color: "#ffffff",
+            fontWeight: "800",
+          },
+        }}
+      />
+      <CardContent sx={{ pt: (theme) => `${theme.spacing(3)} !important` }}>
         <Box
           sx={{
             display: "flex",
@@ -106,7 +79,7 @@ const PaymentMethod = ({ value, data, onChange }: any) => {
             justifyContent: "center",
           }}
         >
-          {methods.map((method) => (
+          {data.map((method: any) => (
             <Box
               key={method.id}
               onClick={() => {
@@ -144,31 +117,29 @@ const PaymentMethod = ({ value, data, onChange }: any) => {
                 }
               }}
               sx={{
+                height: "auto",
                 width: {
                   xs: "100%",
                   sm:
-                    !value.amount ||
-                    value.amount > method.maxAmount ||
-                    value.amount < method.minAmount
+                    !value.totalAmountBeforeFee ||
+                    value.totalAmountBeforeFee > method.maxAmount ||
+                    value.totalAmountBeforeFee < method.minAmount
                       ? "48%"
                       : "48%",
                   lg:
-                    !value.amount ||
-                    value.amount > method.maxAmount ||
-                    value.amount < method.minAmount
+                    !value.totalAmountBeforeFee ||
+                    value.totalAmountBeforeFee > method.maxAmount ||
+                    value.totalAmountBeforeFee < method.minAmount
                       ? "31%"
                       : "31%",
                 },
-                display: "flex",
-                justifyContent: { xs: "center", md: "space-between" },
-                alignItems: "center",
-                gap: 2,
                 padding: 4,
+                backgroundColor: "#ffffff0a",
                 borderRadius: "0.4rem",
-                border: "1px solid #B72025",
+                // border: "1px solid #fb923ce6",
                 ...(method.id === value.paymentMethodId && {
-                  outline: "2px solid #B72025",
-                  backgroundColor: "#FFE4E5",
+                  outline: "2px solid #fb923ce6",
+                  backgroundColor: "#ffffff1a",
                 }),
                 ...(value.amount &&
                 value.amount > method.minAmount &&
@@ -177,98 +148,76 @@ const PaymentMethod = ({ value, data, onChange }: any) => {
                   : { filter: "grayscale(100%)", cursor: "not-allowed" }),
               }}
             >
-              <Box position={"relative"} width={70} height={40}>
-                <Image
-                  src={method.logo}
-                  alt="Logo payment method"
-                  fill={true}
-                  quality={55}
-                  objectFit="contain"
-                />
-              </Box>
-              <Typography
-                variant="body2"
+              <Box
                 sx={{
-                  color: "#1F2937",
-                  ...(method.id === value.paymentMethodId && {
-                    fontWeight: "700",
-                  }),
-                  textAlign: "right",
-                  maxWidth: "55%",
-                  ...(value.amount ||
-                  value.amount > method.maxAmount ||
-                  value.amount < method.minAmount
-                    ? {
-                        fontWeight: "500",
-                      }
-                    : {
-                        fontWeight: "600",
-                      }),
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  gap: 4,
                 }}
               >
-                {!value.amount ||
-                value.amount > method.maxAmount ||
-                value.amount < method.minAmount
-                  ? ` (${
-                      value.amount < method.minAmount
-                        ? "Minimal " + currencyConverter(method.minAmount)
-                        : "Maximal " + currencyConverter(method.maxAmount)
-                    })`
-                  : currencyConverter(
-                      method.providerCd === "TOKOPAY" && method.category === "6"
-                        ? Math.ceil(
-                            (value.amount +
+                <Box position={"relative"} width={50} height={20}>
+                  <Image
+                    src={method.logo}
+                    alt="Logo payment method"
+                    fill={true}
+                    quality={55}
+                    loading="lazy"
+                    objectFit="contain"
+                  />
+                </Box>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: "#fb923ce6",
+                    ...(method.id === value.paymentMethodId && {
+                      fontWeight: "700",
+                    }),
+                    textAlign: "right",
+                    maxWidth: "55%",
+                    ...(value.amount &&
+                    value.amount > method.minAmount &&
+                    value.amount < method.maxAmount
+                      ? {
+                          fontWeight: "500",
+                        }
+                      : {
+                          fontWeight: "600",
+                        }),
+                  }}
+                >
+                  {!value.amount ||
+                  value.amount > method.maxAmount ||
+                  value.amount < method.minAmount
+                    ? ` (${
+                        value.amount < method.minAmount
+                          ? "Minimal " + currencyConverter(method.minAmount)
+                          : "Maximal " + currencyConverter(method.maxAmount)
+                      })`
+                    : currencyConverter(
+                        method.providerCd === "TOKOPAY" &&
+                          method.category === "6"
+                          ? Math.ceil(
+                              (value.amount +
+                                (method.feeType === FeeType.PERCENTAGE
+                                  ? (value.amount * method.fee) / 100
+                                  : method.fee)) /
+                                1000
+                            ) * 1000
+                          : value.amount +
                               (method.feeType === FeeType.PERCENTAGE
                                 ? (value.amount * method.fee) / 100
-                                : method.fee)) /
-                              1000
-                          ) * 1000
-                        : value.amount +
-                            (method.feeType === FeeType.PERCENTAGE
-                              ? (value.amount * method.fee) / 100
-                              : method.fee)
-                    )}
+                                : method.fee)
+                      )}
+                </Typography>
+              </Box>
+
+              <Typography variant="body1" color="#ffffff" marginTop={4}>
+                {method.name}
               </Typography>
             </Box>
           ))}
         </Box>
-      </TabPanel>
-    ));
-
-  return (
-    <Card
-      sx={{
-        borderRadius: "0.75rem",
-        background: `#ffffff url(/images/topup-form-step-2.svg) no-repeat right top`,
-        backgroundSize: "150px",
-      }}
-    >
-      <CardHeader
-        title="Metode Pembayaran"
-        titleTypographyProps={{
-          sx: {
-            mb: 2.5,
-            lineHeight: "2rem !important",
-            letterSpacing: "0.15px !important",
-            color: "#1F2937",
-            fontWeight: "800",
-          },
-        }}
-      />
-      <CardContent sx={{ pt: (theme) => `${theme.spacing(3)} !important` }}>
-        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-          <Tabs
-            value={selectedTab}
-            onChange={handleTabChange}
-            aria-label="payment methods tabs"
-            variant="scrollable"
-            scrollButtons="auto"
-            allowScrollButtonsMobile
-          >
-            {categoryTabs}
-          </Tabs>
-        </Box>
-        {tabPanels}
       </CardContent>
     </Card>
   );

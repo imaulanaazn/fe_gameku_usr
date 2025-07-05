@@ -174,10 +174,10 @@ export default function RootLayout({
   }, [push]);
 
   return (
-    <Container className="w-full flex gap-8 pt-10 pb-12">
-      <div className="sidebard w-3/12 bg-white rounded-lg hidden lg:block">
-        <div className="bg-white rounded-lg p-6">
-          <div className="flex flex-col items-center">
+    <Container className="w-full flex gap-8 pt-12 pb-12 bg-darkPrimary">
+      <div className="sidebard w-3/12 h-max bg-darkSecondary rounded-lg hidden lg:block px-6 py-10">
+        <div className="rounded-xl">
+          <div className="flex flex-row items-center gap-4">
             <div
               className="h-20 md:h-28 lg:h-16 aspect-square rounded-full bg-opacity-50 flex-shrink-0 relative group border-2 border-gray-400 lg:border-white"
               onClick={handleClick}
@@ -206,21 +206,18 @@ export default function RootLayout({
               </div>
             </div>
 
-            <h1 className="text-xl font-bold mt-4">{user.name}</h1>
-            <p className="text-gray-700">{user.email}</p>
-            <Link
-              href="/profile/settings"
-              className="text-primary-900 underline px-6 py-2 rounded-full cursor-pointer text-sm font-medium flex gap-2 items-center"
-            >
-              Edit Profile
-              <FontAwesomeIcon icon={faEdit} />
-            </Link>
+            <div>
+              <h1 className="text-xl font-bold text-white">{user.name}</h1>
+              <p className="text-white/70 text-sm">
+                Saldo : Rp.{user.balance || 0}
+              </p>
+            </div>
           </div>
         </div>
 
-        <div className="divider w-full h-px bg-gray-300 px-10 "></div>
+        <div className="divider w-full h-px bg-white/50 px-10 mt-6"></div>
 
-        <ul className="pl-8">
+        <ul className="">
           {sidebarMenus.map((menu) => (
             <li key={menu.path} className="mt-6">
               <Link
@@ -253,7 +250,7 @@ export default function RootLayout({
       <div className="w-full lg:w-9/12">{children}</div>
 
       {/* Mobile Menu */}
-      <div className="lg:hidden fixed bottom-0 left-0 w-full bg-slate-100 pt-4 pb-3">
+      <div className="lg:hidden fixed bottom-0 left-0 w-full bg-darkSecondary pt-4 pb-3">
         <ul className="flex justify-evenly">
           {sidebarMenus.map((menu) => (
             <li key={menu.path}>

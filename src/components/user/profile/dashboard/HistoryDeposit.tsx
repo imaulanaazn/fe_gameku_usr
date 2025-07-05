@@ -54,31 +54,31 @@ const HistoryDeposit = () => {
   const checkStatus = (status: string) => {
     if (status === "1") {
       return (
-        <div className="py-1 px-3 lg:py-3 lg:px-4 text-sm font-medium bg-rose-100 text-rose-700 rounded-full">
+        <div className="py-1 px-3 lg:py-2 lg:px-4 text-sm font-medium bg-rose-700/30 text-rose-200 rounded-full">
           Belum Dibayar
         </div>
       );
     } else if (status === "2") {
       return (
-        <div className="py-1 px-3 lg:py-3 lg:px-4 text-sm font-medium bg-sky-100 text-sky-700 rounded-full">
+        <div className="py-1 px-3 lg:py-2 lg:px-4 text-sm font-medium bg-sky-700/30 text-sky-200 rounded-full">
           Belum Diproses Game
         </div>
       );
     } else if (status === "3") {
       return (
-        <div className="py-1 px-3 lg:py-3 lg:px-4 text-sm font-medium bg-emerald-100 text-emerald-700 rounded-full">
+        <div className="py-1 px-3 lg:py-2 lg:px-4 text-sm font-medium bg-emerald-700/30 text-emerald-200 rounded-full">
           Berhasil
         </div>
       );
     } else if (status === "4") {
       return (
-        <div className="py-1 px-3 lg:py-3 lg:px-4 text-sm font-medium bg-rose-100 text-rose-700 rounded-full ">
+        <div className="py-1 px-3 lg:py-2 lg:px-4 text-sm font-medium bg-rose-700/30 text-rose-200 rounded-full ">
           Gagal
         </div>
       );
     } else if (status === "5") {
       return (
-        <div className="py-1 px-3 lg:py-3 lg:px-4 text-sm font-medium bg-gray-100 text-gray-700 rounded-full">
+        <div className="py-1 px-3 lg:py-2 lg:px-4 text-sm font-medium bg-gray-700/30 text-gray-200 rounded-full">
           Kadaluarsa
         </div>
       );
@@ -110,58 +110,52 @@ const HistoryDeposit = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center gap-3 mt-10  mb-6 md:mt-12 lg:mt-6 xl:mb-10 ">
-        <h1 className="font-semibold text-xl text-neutral-800">
-          Riwayat Deposit
-        </h1>
-      </div>
       <div className="w-full">
         {isMobile && (
           <div className="w-full py-2">
+            <h1 className="font-semibold text-lg text-white text-left mb-4">
+              Riwayat Deposit
+            </h1>
             {orderHistory &&
               orderHistory.data.map((item, index) => (
                 <div
-                  className="bg-white text-black p-4 mb-4 rounded-xl shadow-md"
+                  className="bg-darkSecondary p-4 mb-4 rounded-xl shadow-md"
                   key={index}
                 >
                   <div className="flex justify-between mt-2">
                     <div>
-                      <p className="text-neutral-600 text-sm">No</p>
+                      <p className="text-white/80 text-sm">No</p>
                     </div>
-                    <div className="text-neutral-600 text-sm">{index + 1}</div>
+                    <div className="text-white/80 text-sm">{index + 1}</div>
                   </div>
                   <div className="flex justify-between mt-2">
                     <div>
-                      <p className="text-neutral-600 text-sm">Kode Transaksi</p>
+                      <p className="text-white/80 text-sm">Kode Transaksi</p>
                     </div>
-                    <div className="text-neutral-600 text-sm">
+                    <div className="text-white/80 text-sm">
                       {item.invoiceId}
                     </div>
                   </div>
                   <div className="flex justify-between mt-2">
                     <div>
-                      <p className="text-neutral-600 text-sm">Produk</p>
+                      <p className="text-white/80 text-sm">Produk</p>
                     </div>
-                    <div className="text-neutral-600 text-sm">
-                      Gasskeun Coin
-                    </div>
+                    <div className="text-white/80 text-sm">Gasskeun Coin</div>
                   </div>
 
                   <div className="flex justify-between mt-2">
                     <div>
-                      <p className="text-neutral-600 text-sm">Harga</p>
+                      <p className="text-white/80 text-sm">Harga</p>
                     </div>
-                    <div className="text-neutral-600 text-sm">
+                    <div className="text-white/80 text-sm">
                       {formatter(item.totalAmt)}
                     </div>
                   </div>
                   <div className="flex justify-between mt-2">
                     <div>
-                      <p className="text-neutral-600 text-sm">
-                        Status Pembayaran
-                      </p>
+                      <p className="text-white/80 text-sm">Status</p>
                     </div>
-                    <div className="text-neutral-600 text-sm">
+                    <div className="text-white/80 text-sm">
                       {checkStatus(item.status)}
                     </div>
                   </div>
@@ -170,55 +164,54 @@ const HistoryDeposit = () => {
           </div>
         )}
         {!isMobile && (
-          <table className="w-full text-gray-600 text-sm">
-            <thead>
-              <tr className="bg-gray-100">
-                <th className="font-medium py-2 px-4 sm:py-2 sm:px-6 md:py-3 md:px-4 lg:py-3 lg:px-6 mb-4 text-neutral-700 xl:text-base">
-                  No
-                </th>
-                <th className="font-medium py-2 px-4 sm:py-2 sm:px-6 md:py-3 md:px-4 lg:py-3 lg:px-6 mb-4 text-neutral-700 xl:text-base">
-                  Kode Transaksi
-                </th>
-                <th className="font-medium py-2 px-4 sm:py-2 sm:px-6 md:py-3 md:px-4 lg:py-3 lg:px-6 mb-4 text-neutral-700 xl:text-base">
-                  Produk
-                </th>
-                <th className="font-medium py-2 px-4 sm:py-2 sm:px-6 md:py-3 md:px-4 lg:py-3 lg:px-6 mb-4 text-neutral-700 xl:text-base">
-                  Harga
-                </th>
-                <th className="font-medium py-2 px-4 sm:py-2 sm:px-6 md:py-3 md:px-4 lg:py-3 lg:px-6 mb-4 text-neutral-700 xl:text-base">
-                  Status Pembayaran
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {orderHistory &&
-                orderHistory.data.map((item, index) => (
-                  <tr className="bg-white" key={index}>
-                    <td className="py-2 px-4 sm:py-2 sm:px-6 md:py-3 md:px-4 lg:py-2 lg:px-6 text-neutral-500 xl:text-base">
-                      {index + 1}
-                    </td>
-                    <td className="py-2 px-4 sm:py-2 sm:px-6 md:py-3 md:px-4 lg:py-2 lg:px-6 text-neutral-500 xl:text-base">
-                      {item.invoiceId}
-                    </td>
-                    <td className="py-2 px-4 sm:py-2 sm:px-6 md:py-3 md:px-4 lg:py-2 lg:px-6 text-neutral-500 xl:text-base">
-                      Gasskeun Coin
-                    </td>
+          <div className="bg-darkSecondary p-8 rounded-xl">
+            <h1 className="font-semibold text-lg text-white text-left mb-4">
+              Riwayat Deposit
+            </h1>
+            <table className="w-full text-gray-600 text-sm">
+              <thead className="bg-white/10">
+                <tr>
+                  <th className="font-medium lg:px-6 text-white/80 xl:text-base py-2 sm:py-2 sm:px-6 md:py-3 md:px-4 lg:py-3">
+                    Kode Transaksi
+                  </th>
+                  <th className="font-medium lg:px-6 text-white/80 xl:text-base py-2 sm:py-2 sm:px-6 md:py-3 md:px-4 lg:py-3">
+                    Produk
+                  </th>
+                  <th className="font-medium lg:px-6 text-white/80 xl:text-base py-2 sm:py-2 sm:px-6 md:py-3 md:px-4 lg:py-3">
+                    Harga
+                  </th>
+                  <th className="font-medium lg:px-6 text-white/80 xl:text-base py-2 sm:py-2 sm:px-6 md:py-3 md:px-4 lg:py-3">
+                    Status
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {orderHistory &&
+                  orderHistory.data.map((item, index) => (
+                    <tr key={index}>
+                      <td className="py-2 px-4 sm:py-2 sm:px-6 md:py-3 md:px-4 lg:py-2 lg:px-6 text-neutral-500 xl:text-base">
+                        {item.invoiceId}
+                      </td>
+                      <td className="py-2 px-4 sm:py-2 sm:px-6 md:py-3 md:px-4 lg:py-2 lg:px-6 text-neutral-500 xl:text-base">
+                        Gasskeun Coin
+                      </td>
 
-                    <td className="py-2 px-4 sm:py-2 sm:px-6 md:py-3 md:px-4 lg:py-2 lg:px-6 text-neutral-500 xl:text-base">
-                      {formatter(item.totalAmt)}
-                    </td>
-                    <td className="py-2 px-4 sm:py-2 sm:px-6 md:py-3 md:px-4 lg:py-2 lg:px-6 text-neutral-500 xl:text-base">
-                      {checkStatus(item.status)}
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
+                      <td className="py-2 px-4 sm:py-2 sm:px-6 md:py-3 md:px-4 lg:py-2 lg:px-6 text-neutral-500 xl:text-base">
+                        {formatter(item.totalAmt)}
+                      </td>
+                      <td className="py-2 px-4 sm:py-2 sm:px-6 md:py-3 md:px-4 lg:py-2 lg:px-6 text-neutral-500 xl:text-base">
+                        {checkStatus(item.status)}
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
 
       {orderHistory && (
-        <div className="w-full flex justify-center mt-6 md:mt-10 lg:mt-6">
+        <div className="w-full flex justify-center md:mt-8 lg:mt-6">
           <ReactPaginate
             previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
             nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
@@ -234,12 +227,12 @@ const HistoryDeposit = () => {
             forcePage={page - 1}
             containerClassName={"flex space-x-2 items-center"}
             pageLinkClassName="font-semibold rounded-md px-2 py-2"
-            nextLinkClassName="bg-white border-2 border-gray-300 text-gray-500 rounded-md px-3 py-2"
-            previousLinkClassName="bg-white border-2 border-gray-300 text-gray-500 rounded-md px-3 py-2"
+            nextLinkClassName="bg-darkSecondary text-gray-500 rounded-md px-4 py-3"
+            previousLinkClassName="bg-darkSecondary text-gray-500 rounded-md px-4 py-3"
             // nextLinkClassName={nextPaginationBtn}
             // previousLinkClassName={prevPaginationBtn}
             activeClassName={
-              "bg-[#B72025] text-white font-semibold rounded-md p-2"
+              "bg-orangePrimary text-white font-semibold rounded-md p-2"
             }
           />
         </div>

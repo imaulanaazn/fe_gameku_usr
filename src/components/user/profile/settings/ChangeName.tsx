@@ -64,8 +64,8 @@ const ChangeName = () => {
   };
   return (
     <>
-      <div className="w-full h-full md:h-max px-6 py-8 md:px-10 md:py-10 xl:px-8 xl:py-10 flex flex-col justify-center shadow-md rounded-xl bg-white">
-        <h2 className="font-semibold text-2xl mb-8 xl:mb-10 text-center">
+      <div className="w-full h-full md:h-max px-6 py-8 md:px-10 md:py-10 xl:px-8 xl:py-10 flex flex-col justify-center shadow-md rounded-xl bg-darkSecondary">
+        <h2 className="font-semibold text-2xl mb-8 xl:mb-10 text-center text-white">
           Ganti Nama
         </h2>
         <form
@@ -75,14 +75,14 @@ const ChangeName = () => {
           <div className="mb-4">
             <label
               htmlFor="firstName"
-              className="font-medium text-base text-neutral-900 inline-block mb-1.5"
+              className="font-medium text-base text-white/80 inline-block mb-1.5"
             >
               First Name
             </label>
             <input
               type="text"
               id="firstName"
-              className="w-full py-3 px-4 bg-slate-100 rounded-md text-sm placeholder:text-sm overflow-hidden border border-solid border-white focus:bg-white focus:ring-0 focus:border-primary-900"
+              className="w-full py-3 px-4 bg-transparent rounded-md text-sm placeholder:text-sm overflow-hidden border border-solid border-white focus:ring-0 focus:border-primary-900 text-white"
               value={data.firstName}
               onChange={(e) =>
                 setData((prev) => ({ ...prev, firstName: e.target.value }))
@@ -94,14 +94,14 @@ const ChangeName = () => {
           <div className="mb-6">
             <label
               htmlFor="lastName"
-              className="font-medium text-base text-neutral-900 inline-block mb-1.5"
+              className="font-medium text-base text-white/80 inline-block mb-1.5"
             >
               First Name
             </label>
             <input
               type="text"
               id="lastName"
-              className="w-full py-3 px-4 bg-slate-100 rounded-md text-sm placeholder:text-sm overflow-hidden border border-solid border-white focus:bg-white focus:ring-0 focus:border-primary-900"
+              className="w-full py-3 px-4 bg-transparent rounded-md text-sm placeholder:text-sm overflow-hidden border border-solid border-white focus:ring-0 focus:border-primary-900 text-white"
               value={data.lastName}
               onChange={(e) =>
                 setData((prev) => ({ ...prev, lastName: e.target.value }))

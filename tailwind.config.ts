@@ -43,7 +43,7 @@ const config: Config = {
       backgroundColor: {
         darkPrimary: "#0f0f14",
         darkSecondary: "#161721 ",
-        darkAccent: "orange-400/90",
+        orangePrimary: "#fb923ce6",
       },
     },
     screens: {

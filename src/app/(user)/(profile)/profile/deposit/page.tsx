@@ -12,6 +12,7 @@ import PaymentMethod from "@/components/user/profile/deposit/PaymentMethod";
 import MobileNumber from "@/components/user/profile/deposit/MobileNumber";
 import AdditionalData from "@/components/user/profile/deposit/AdditionalData";
 import ConfirmCheckout from "@/components/user/profile/deposit/ConfirmCheckout";
+import { Stack } from "@mui/system";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -98,7 +99,7 @@ export default function Deposit() {
       <Card
         sx={{
           borderRadius: "0.75rem",
-          background: `#ffffff url(/images/topup-form-step-1.svg) no-repeat right top`,
+          background: `#161721 url(/images/topup-form-step-1.svg) no-repeat right top`,
           backgroundSize: "150px",
         }}
       >
@@ -109,15 +110,13 @@ export default function Deposit() {
               mb: 2.5,
               lineHeight: "2rem !important",
               letterSpacing: "0.15px !important",
-              color: "#1F2937",
+              color: "#ffffff",
             },
           }}
         />
         <CardContent
           sx={{
             pt: (theme) => `${theme.spacing(3)} !important`,
-            display: "flex",
-            gap: "1rem",
             paddingX: "1.25rem",
           }}
         >
@@ -127,13 +126,14 @@ export default function Deposit() {
             id="total"
             label="Jumlah Deposit"
             sx={{
-              "& .MuiFormLabel-root": { color: "#B72025" },
+              "& .MuiFormLabel-root": { color: "#fb923ce6" },
               "& input": {
-                border: "1px solid #B72025",
+                border: "1px solid #fb923ce6",
                 borderRadius: "0.4rem",
+                color: "#ffffff",
               },
               "& .MuiInputLabel-root": {
-                background: "white",
+                background: "#161721",
               },
             }}
             onChange={handleInputChange}
@@ -159,7 +159,7 @@ export default function Deposit() {
         fullWidth
         variant="contained"
         size="large"
-        sx={{ marginTop: 4 }}
+        sx={{ marginTop: 6 }}
         onClick={() => setModalOpen(true)}
         disabled={isDisabled}
       >
