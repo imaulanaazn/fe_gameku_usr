@@ -379,7 +379,11 @@ const NewPayment = ({ invoices }: { invoices: IInvoice }) => {
                         {order?.order?.serverId && (
                           <Typography
                             variant="body2"
-                            sx={{ fontWeight: 500, marginTop: 2 }}
+                            sx={{
+                              fontWeight: 500,
+                              marginTop: 2,
+                              color: "#d1d5db",
+                            }}
                           >
                             {order?.order?.serverId}
                           </Typography>
@@ -397,7 +401,11 @@ const NewPayment = ({ invoices }: { invoices: IInvoice }) => {
                         {order?.order?.username && (
                           <Typography
                             variant="body2"
-                            sx={{ fontWeight: 500, marginTop: 2 }}
+                            sx={{
+                              fontWeight: 500,
+                              marginTop: 2,
+                              color: "#d1d5db",
+                            }}
                           >
                             {order?.order?.username}
                           </Typography>
@@ -992,13 +1000,13 @@ function PaymentPendingCountdown({
       sx={{
         padding: 4,
         borderRadius: { xs: 1, md: 2 },
-        backgroundColor: "rgb(255 237 213)",
+        backgroundColor: "#fb923ce6",
       }}
     >
       <Box
         borderRadius={10}
         sx={{
-          backgroundColor: "rgb(253 186 116)",
+          backgroundColor: "#ffffff50",
           display: "flex",
           flexShrink: "0",
           alignItems: "center",
@@ -1014,17 +1022,17 @@ function PaymentPendingCountdown({
       </Box>
       <Box>
         <Typography
-          fontWeight={600}
+          fontWeight={500}
           fontSize={{ xs: 14, lg: 16 }}
-          color={"#374151"}
+          color={"#ffffffd0"}
         >
           Yok Selesaikan Transaksimu!!
         </Typography>
-        <Typography fontSize={{ xs: 14, lg: 16 }} color={"gray.900"}>
+        <Typography fontSize={{ xs: 14, lg: 16 }} color={"#ffffffd0"}>
           Waktu Tersisa{"  "}
           <Typography
             variant="caption"
-            sx={{ color: "#fb923ce6", fontWeight: 600, fontSize: "inherit" }}
+            sx={{ color: "#ffffff", fontWeight: 600, fontSize: "inherit" }}
           >
             {" "}
             {timeRemaining.days}d {timeRemaining.hours}h {timeRemaining.minutes}

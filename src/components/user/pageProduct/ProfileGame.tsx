@@ -56,7 +56,7 @@ const ProfileGame = ({ denoms }: { denoms: IGameDetail }) => {
           my={5}
           gap={2}
         >
-          <Stack gap={2}>
+          <Stack gap={2} width={"100%"}>
             <Stack
               direction="row"
               gap={2}
@@ -112,7 +112,7 @@ const ProfileGame = ({ denoms }: { denoms: IGameDetail }) => {
               </Typography>
             </Stack>
           </Stack>
-          <Stack gap={2}>
+          <Stack gap={2} width={"100%"}>
             <Stack
               direction="row"
               gap={2}

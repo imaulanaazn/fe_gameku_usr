@@ -15,8 +15,8 @@ const Game: React.FC<IGameProps> = ({ data }) => {
     >
       <div className="w-full h-full relative">
         <Image
-          src={data.logoUrl}
-          alt={`Logo Game Gasskeun Topup ${data.name}`}
+          src={data.logoUrl || "/images/game_logo_default.jpg"}
+          alt={`Logo Game ${data.name}`}
           width="100"
           height="100"
           quality={30}

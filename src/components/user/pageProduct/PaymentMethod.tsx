@@ -18,6 +18,7 @@ const PaymentMethod = ({ value, data, onChange, position }: any) => {
   const [user, setUser] = useRecoilState(userState);
   return (
     <Card
+      id="payment-method"
       sx={{
         borderRadius: "0.75rem",
         background: `#161721 url(/images/topup-form-step-${position}.svg) no-repeat right top`,
@@ -41,7 +42,7 @@ const PaymentMethod = ({ value, data, onChange, position }: any) => {
           sx={{
             display: "flex",
             flexWrap: "wrap",
-            gap: 4,
+            gap: 2.5,
             justifyContent: "center",
           }}
         >
@@ -60,8 +61,8 @@ const PaymentMethod = ({ value, data, onChange, position }: any) => {
               sx={{
                 height: "auto",
                 width: {
-                  xs: "100%",
-                  sm:
+                  // xs: "100%",
+                  xs:
                     !value.totalAmountBeforeFee ||
                     value.totalAmountBeforeFee > method.maxAmount ||
                     value.totalAmountBeforeFee < method.minAmount
@@ -122,7 +123,7 @@ const PaymentMethod = ({ value, data, onChange, position }: any) => {
                 sx={{
                   width: "100%",
                   height: "100%",
-                  padding: 4,
+                  padding: 3.5,
                   backgroundColor: "#ffffff0a",
                   borderRadius: "0.4rem",
                   // border: "1px solid #fb923ce6",
@@ -145,7 +146,7 @@ const PaymentMethod = ({ value, data, onChange, position }: any) => {
                     gap: 4,
                   }}
                 >
-                  <Box position={"relative"} width={50} height={20}>
+                  <Box position={"relative"} width={60} height={25}>
                     <Image
                       src={method.logo}
                       alt="Logo payment method"
@@ -155,61 +156,60 @@ const PaymentMethod = ({ value, data, onChange, position }: any) => {
                       objectFit="contain"
                     />
                   </Box>
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      color: "#fb923ce6",
-                      ...(method.id === value.paymentMethodId && {
-                        fontWeight: "700",
-                      }),
-                      textAlign: "right",
-                      maxWidth: "55%",
-                      ...(value.totalAmountBeforeFee ||
-                      value.totalAmountBeforeFee > method.maxAmount ||
-                      value.totalAmountBeforeFee < method.minAmount
-                        ? {
-                            fontWeight: "500",
-                          }
-                        : {
-                            fontWeight: "600",
-                          }),
-                    }}
-                  >
-                    {!value.totalAmountBeforeFee ||
-                    value.totalAmountBeforeFee > method.maxAmount ||
-                    value.totalAmountBeforeFee < method.minAmount
-                      ? ` (${
-                          value.totalAmountBeforeFee < method.minAmount
-                            ? "Minimal " + currencyConverter(method.minAmount)
-                            : "Maximal " + currencyConverter(method.maxAmount)
-                        })`
-                      : currencyConverter(
-                          method.providerCd === "TOKOPAY" &&
-                            method.category === "6"
-                            ? Math.ceil(
-                                (value.totalAmountBeforeFee +
-                                  (method.feeType === FeeType.PERCENTAGE
-                                    ? (value.totalAmountBeforeFee *
-                                        method.fee) /
-                                      100
-                                    : method.fee)) /
-                                  1000
-                              ) * 1000
-                            : value.totalAmountBeforeFee +
-                                (method.feeType === FeeType.PERCENTAGE
-                                  ? (value.totalAmountBeforeFee * method.fee) /
-                                    100
-                                  : method.fee)
-                        )}
+                  <Typography variant="body2" color="#ffffff">
+                    {method.isNeedLogin && !user.id
+                      ? "Login Untuk Menggunakan " + method.name
+                      : method.name}
                   </Typography>
                 </Box>
 
-                <Divider />
+                <Divider sx={{ backgroundColor: "#ffffff40" }} />
 
-                <Typography variant="body1" color="#ffffff">
-                  {method.isNeedLogin && !user.id
-                    ? "Login Untuk Menggunakan " + method.name
-                    : method.name}
+                <Typography
+                  variant="caption"
+                  sx={{
+                    color: "#fb923ce6",
+                    ...(method.id === value.paymentMethodId && {
+                      fontWeight: "700",
+                    }),
+                    textAlign: "right",
+                    maxWidth: "55%",
+                    ...(value.totalAmountBeforeFee ||
+                    value.totalAmountBeforeFee > method.maxAmount ||
+                    value.totalAmountBeforeFee < method.minAmount
+                      ? {
+                          fontWeight: "500",
+                        }
+                      : {
+                          fontWeight: "600",
+                        }),
+                  }}
+                >
+                  {!value.totalAmountBeforeFee ||
+                  value.totalAmountBeforeFee > method.maxAmount ||
+                  value.totalAmountBeforeFee < method.minAmount
+                    ? ` (${
+                        value.totalAmountBeforeFee < method.minAmount
+                          ? "Minimal " + currencyConverter(method.minAmount)
+                          : "Maximal " + currencyConverter(method.maxAmount)
+                      })`
+                    : currencyConverter(
+                        method.providerCd === "TOKOPAY" &&
+                          method.category === "6"
+                          ? Math.ceil(
+                              (value.totalAmountBeforeFee +
+                                (method.feeType === FeeType.PERCENTAGE
+                                  ? (value.totalAmountBeforeFee * method.fee) /
+                                    100
+                                  : method.fee)) /
+                                1000
+                            ) * 1000
+                          : value.totalAmountBeforeFee +
+                              (method.feeType === FeeType.PERCENTAGE
+                                ? (value.totalAmountBeforeFee * method.fee) /
+                                  100
+                                : method.fee)
+                      )}
                 </Typography>
               </Box>
             </Link>

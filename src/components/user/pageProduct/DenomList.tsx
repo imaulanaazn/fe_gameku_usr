@@ -88,24 +88,20 @@ const DenomList = ({ position, data, onChange, value }: any) => {
                         sx={{
                           letterSpacing: "0.25px",
                           fontWeight: 600,
-                          color: "#fb923ce6",
+                          color: "#ffffff",
                           ...(item.id === value.productId && {
                             fontWeight: 800,
                           }),
                         }}
                       >
-                        {item.name.includes("(")
-                          ? item.name
-                              .substring(0, item.name.indexOf("("))
-                              .trim()
-                          : item.name}
+                        {item.name}
                       </Typography>
                       <Typography
                         variant="caption"
                         sx={{
                           letterSpacing: "0.25px",
                           fontWeight: 400,
-                          color: "#ffffff",
+                          color: "#fb923ce6",
                           ...(item.id === value.productId && {
                             fontWeight: 600,
                           }),

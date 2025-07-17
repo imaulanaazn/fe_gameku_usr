@@ -229,21 +229,21 @@ const NewFormTopup: React.FC<IFormProps> = ({ products, paymentsMethod }) => {
                   onChange={(key: any, value: any) => handleChange(key, value)}
                 />
               )}
-              <Quantity
+              {/* <Quantity
                 position={products.type === "topup" ? 3 : 2}
                 value={data}
                 data={products}
                 onChange={(key: any, value: any) => handleChange(key, value)}
-              />
+              /> */}
               <PaymentMethod
                 balance={balance}
-                position={products.type === "topup" ? 4 : 3}
+                position={products.type === "topup" ? 3 : 2}
                 value={data}
                 data={paymentsMethod.length > 0 && paymentsMethod}
                 onChange={(key: any, value: any) => handleChange(key, value)}
               />
               <AdditionalData
-                position={products.type === "topup" ? 5 : 4}
+                position={products.type === "topup" ? 4 : 3}
                 value={data}
                 data={products}
                 onChange={(key: any, value: any) => handleChange(key, value)}
@@ -254,11 +254,11 @@ const NewFormTopup: React.FC<IFormProps> = ({ products, paymentsMethod }) => {
                     position={
                       products.type === "topup" &&
                       data.paymentMethodCd === "ID_JENIUSPAY"
-                        ? 6
+                        ? 5
                         : products.type === "topup" ||
                           data.paymentMethodCd === "ID_JENIUSPAY"
-                        ? 5
-                        : 4
+                        ? 4
+                        : 3
                     }
                     value={data}
                     data={products}
@@ -272,11 +272,11 @@ const NewFormTopup: React.FC<IFormProps> = ({ products, paymentsMethod }) => {
                     position={
                       products.type === "topup" &&
                       data.paymentMethodCd === "ID_JENIUSPAY"
-                        ? 7
+                        ? 6
                         : products.type === "topup" ||
                           data.paymentMethodCd === "ID_JENIUSPAY"
-                        ? 6
-                        : 5
+                        ? 5
+                        : 4
                     }
                     value={data}
                     data={products}
