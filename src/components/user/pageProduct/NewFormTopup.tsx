@@ -198,7 +198,7 @@ const NewFormTopup: React.FC<IFormProps> = ({ products, paymentsMethod }) => {
         <Grid container spacing={6}>
           <Grid item xs={12} sm={4}>
             <Stack gap={6}>
-              <ProfileGame denoms={products} />
+              {/* <ProfileGame denoms={products} /> */}
               <Stack sx={{ display: { xs: "none", sm: "flex" } }} gap={6}>
                 <ProductReview gameId={products.id} />
                 {/* <FAQ /> */}

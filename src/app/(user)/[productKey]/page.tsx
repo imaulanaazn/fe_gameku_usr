@@ -4,7 +4,6 @@ import sendRequest from "@/lib/baseApi";
 import Maintenance from "@/components/global/maintenance/Maintenance";
 import NewFormTopup from "@/components/user/pageProduct/NewFormTopup";
 import Container from "@/components/global/Container/Container";
-import Script from "next/script";
 interface IParams {
   params: {
     productKey: string;
@@ -28,46 +27,8 @@ const page = async ({ params }: IParams) => {
     "/v1/payments-method?query=9&type=payment"
   );
 
-  const ratings = await sendRequest<IReviewsResponse>(
-    `/v1/order-review?gameId=${gameDetail.data.id}`
-  );
-
-  const { minPrice, maxPrice } = gameDetail.data.products.reduce(
-    (acc: { minPrice: number; maxPrice: number }, item: IProductsGame) => {
-      if (item.price < acc.minPrice) acc.minPrice = item.price;
-      if (item.price > acc.maxPrice) acc.maxPrice = item.price;
-      return acc;
-    },
-    { minPrice: Infinity, maxPrice: -Infinity }
-  );
-
-  const schemaMarkup = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: gameDetail.data.name,
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: ratings.data.averageRating || 0,
-      reviewCount: ratings.data.averageRating || 0,
-    },
-    offers: {
-      "@type": "AggregateOffer",
-      lowPrice: minPrice,
-      highPrice: maxPrice,
-      priceCurrency: "IDR",
-      availability: true
-        ? "http://schema.org/InStock"
-        : "http://schema.org/OutOfStock",
-    },
-  };
-
   return (
     <>
-      <Script
-        id="aggregate-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaMarkup) }}
-      />
       <div className="bg-darkPrimary pb-10">
         <Container>
           {/* <div className="mx-auto "> */}

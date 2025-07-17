@@ -15,7 +15,6 @@ const Loading = () => {
             fillRule="evenodd"
           />
         </svg>
-
         <div>Loading ...</div>
       </div>
     </div>

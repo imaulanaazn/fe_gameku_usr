@@ -21,9 +21,9 @@ const withAuth = <P extends Record<string, unknown>>(
       }
     }, [user, loading]);
 
-    // if (loading) {
-    //     return <p>Loading...</p>;
-    // }
+    if (loading) {
+      return <p>Loading...</p>;
+    }
 
     return <WrappedComponent {...props} />;
   };
