@@ -104,7 +104,7 @@ function ProductReview({ gameId }: { gameId: string }) {
               paddingX={3}
               paddingY={2}
               sx={{
-                bgcolor: "#FFE4E5",
+                bgcolor: "#ffffff0a",
                 borderRadius: "0.5rem",
                 width: "max-content",
                 margin: "0.5rem auto",

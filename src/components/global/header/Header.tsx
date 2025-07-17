@@ -253,9 +253,9 @@ const Header = () => {
                   type="text"
                   onChange={handleSearchChange}
                   placeholder="Cari game"
-                  className="peer py-2 px-4 border border-solid text-primary-900 rounded-md w-full md:w-80 lg:w-60 xl:w-80 focus:border-2 focus:border-primary-900 bg-darkSecondary"
+                  className="peer py-2 px-4 border border-solid text-white/80 rounded-md w-full md:w-80 lg:w-60 xl:w-80 focus:border-white/80 bg-darkSecondary"
                 />
-                <button className="peer-focus:text-primary-900 text-gray-500">
+                <button className="peer-focus:text-white/90 text-gray-500">
                   <FontAwesomeIcon
                     icon={faMagnifyingGlass}
                     className="absolute top-1/2 right-4 -translate-y-1/2 text-lg "
