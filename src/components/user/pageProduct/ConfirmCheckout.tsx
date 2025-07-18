@@ -167,7 +167,7 @@ const ConfirmCheckout = ({
                   size="small"
                   aria-label="settings"
                   className="card-more-options"
-                  sx={{ color: "text.secondary" }}
+                  sx={{ color: "#ffffff" }}
                   onClick={() => onClose()}
                 >
                   <Close />
