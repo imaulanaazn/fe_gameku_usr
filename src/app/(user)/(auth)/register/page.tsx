@@ -51,7 +51,7 @@ const Register = async () => {
         <div className="right-side hidden lg:flex w-96 h-auto px-10 py-10 xl:px-12 xl:py-12 bg-primary-900 items-center justify-center">
           <div className="h-max w-max">
             <Image
-              src={"/images/topup_gameku_logo.jpg"}
+              src={"/images/gameku_logo.jpg"}
               width={120}
               height={120}
               alt="gasskeun top up logo"

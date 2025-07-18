@@ -206,10 +206,10 @@ const Header = () => {
     <>
       <header className="sticky top-0 w-full z-50 bg-darkSecondary">
         <Container>
-          <div className="flex justify-between items-center gap-4 md:gap-6 h-[4.5rem]">
+          <div className="flex justify-between items-center gap-6 md:gap-6 h-[4.5rem]">
             <div className="left-side flex items-center gap-6 xl:gap-8">
               <div className="logo">
-                <Link href="/" className="flex items-center w-12 h-12">
+                <Link href="/" className="flex items-center w-8 h-8">
                   {logo && logo.logo && (
                     <Image
                       src={logo.logo}
@@ -241,7 +241,7 @@ const Header = () => {
               </nav>
             </div>
 
-            <div className="right-side flex gap-6 lg:gap-4 relative items-center">
+            <div className="right-side flex flex-1 md:flex-[0] gap-6 lg:gap-4 relative items-center">
               <div
                 className="search-bar w-full relative bg-transparent"
                 ref={modalContainerRef}

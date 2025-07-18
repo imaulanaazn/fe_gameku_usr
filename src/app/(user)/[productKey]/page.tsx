@@ -1,132 +1,97 @@
+"use client";
 import { Metadata } from "next";
 import NotFound from "./not-found";
 import sendRequest from "@/lib/baseApi";
 import Maintenance from "@/components/global/maintenance/Maintenance";
 import NewFormTopup from "@/components/user/pageProduct/NewFormTopup";
 import Container from "@/components/global/Container/Container";
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
+import * as crypto from "crypto";
+import HmacMD5 from "crypto-js/hmac-md5";
+import Hex from "crypto-js/enc-hex";
+import Loading from "./loading";
 interface IParams {
   params: {
     productKey: string;
   };
 }
 
-const page = async ({ params }: IParams) => {
-  const statusWebsite = await sendRequest<{ value: string }[]>(
-    "/v1/config?type=website_status"
-  );
-  if (statusWebsite.data[0].value === "maintenance") {
-    return <Maintenance />;
+const Page = () => {
+  const { productKey } = useParams();
+  const [loading, setLoading] = useState(true);
+  const [status, setStatus] = useState<"ok" | "not-found">("ok");
+  const [gameDetail, setGameDetail] = useState<IGameDetail>({} as IGameDetail);
+  const [paymentsMethod, setPaymentsMethod] = useState<IPaymentMethod[]>([]);
+  const apiKey = process.env.NEXT_PUBLIC_API_KEY as string;
+
+  useEffect(() => {
+    if (!productKey) return;
+
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const gameDetailRes = await fetchAPI(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/v1/game-detail?slug=${productKey}`
+        );
+        const paymentsMethodRes = await fetchAPI(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/v1/payments-method?query=9&type=payment`
+        );
+
+        const gameDetailData = await gameDetailRes.json();
+        const paymentsData = await paymentsMethodRes.json();
+
+        if (!gameDetailRes.ok) {
+          setStatus("not-found");
+          return;
+        }
+
+        setGameDetail(gameDetailRes.ok ? gameDetailData : ({} as IGameDetail));
+        setPaymentsMethod(paymentsMethodRes.ok ? paymentsData : []);
+      } catch (err) {
+        setStatus("not-found");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [productKey]);
+
+  async function fetchAPI(url: string) {
+    const dataSign = `${apiKey}:${url}`;
+
+    let sign = HmacMD5(dataSign, apiKey).toString();
+
+    const response = await fetch(url, {
+      cache: "no-store",
+      next: { revalidate: 60 },
+      headers: {
+        "x-gasskeun-sign": sign,
+        "ngrok-skip-browser-warning": "true",
+      },
+    });
+
+    return response;
   }
-  const gameDetail = await sendRequest<IGameDetail>(
-    "/v1/game-detail?slug=" + params.productKey
-  );
-  if (!gameDetail.ok) {
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (!gameDetail?.id) {
     return <NotFound />;
   }
-  const paymentsMethod = await sendRequest<IPaymentMethod[]>(
-    "/v1/payments-method?query=9&type=payment"
-  );
 
   return (
     <>
       <div className="bg-darkPrimary pb-10">
         <Container>
-          {/* <div className="mx-auto "> */}
-          <NewFormTopup
-            products={gameDetail.data}
-            paymentsMethod={paymentsMethod.data}
-          />
-          {/* <FormTopup products={gameDetail.data} paymentsMethod={paymentsMethod.data} /> */}
-          {/* </div> */}
+          <NewFormTopup products={gameDetail} paymentsMethod={paymentsMethod} />
         </Container>
       </div>
     </>
   );
 };
 
-export const generateMetadata = async ({ params }: IParams) => {
-  const meta = await sendRequest<IMeta>(
-    "/v1/meta?path=/" + params.productKey,
-    {},
-    3600
-  );
-
-  if (!meta.ok) {
-    return;
-  }
-
-  return {
-    metadataBase: new URL(
-      process.env.NEXT_PUBLIC_HOST || "https://gasskeuntopup.com"
-    ),
-    title: meta.data.title + " - Gasskeun Topup",
-    icons: {
-      icon: {
-        sizes: "32x32",
-        url: meta.data.icon,
-        type: "image/png",
-      },
-      shortcut: {
-        sizes: "64x64",
-        url: meta.data.icon,
-        type: "image/png",
-      },
-      apple: {
-        sizes: "120x120",
-        url: meta.data.icon,
-        type: "image/png",
-      },
-      other: [
-        {
-          rel: "apple-touch-icon-precomposed",
-          url: meta.data.icon,
-          sizes: "152x152",
-        },
-        {
-          rel: "apple-touch-icon-120x120",
-          url: meta.data.icon,
-          sizes: "120x120",
-        },
-        {
-          rel: "apple-touch-icon-120x120-precomposed",
-          url: meta.data.icon,
-          sizes: "120x120",
-        },
-      ],
-    },
-    description: meta.data.description,
-    keywords: JSON.parse(meta.data.keywords).join(","),
-    authors: [
-      {
-        name: "gasskeuntopup",
-        url: new URL(
-          process.env.NEXT_PUBLIC_HOST || "https://gasskeuntopup.com"
-        ),
-      },
-    ],
-    alternates: {
-      canonical: "/",
-    },
-    openGraph: {
-      title: meta.data.title + " - Gasskeun Topup",
-      url: process.env.NEXT_PUBLIC_HOST + meta.data.path,
-      type: "website",
-      siteName: "Gasskeun Topup",
-      images: meta.data.image,
-      description: meta.data.description,
-    },
-    twitter: {
-      card: "summary_large_image",
-      images: meta.data.image,
-      title: meta.data.title + " - Gasskeun Topup",
-      description: meta.data.description,
-    },
-    robots: {
-      index: true,
-      follow: false,
-      nocache: false,
-    },
-  } as Metadata;
-};
-
-export default page;
+export default Page;

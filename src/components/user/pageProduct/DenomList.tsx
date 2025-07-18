@@ -43,7 +43,7 @@ const DenomList = ({ position, data, onChange, value }: any) => {
         <Grid container spacing={3}>
           {data.products.map((item: any) => (
             <Grid key={item.id} item xs={6} md={4}>
-              <a href="#quantity">
+              <a href="#payment-method">
                 <Card
                   elevation={0}
                   sx={{

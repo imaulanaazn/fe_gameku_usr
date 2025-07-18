@@ -198,7 +198,7 @@ const NewFormTopup: React.FC<IFormProps> = ({ products, paymentsMethod }) => {
         <Grid container spacing={6}>
           <Grid item xs={12} sm={4}>
             <Stack gap={6}>
-              {/* <ProfileGame denoms={products} /> */}
+              <ProfileGame denoms={products} />
               <Stack sx={{ display: { xs: "none", sm: "flex" } }} gap={6}>
                 <ProductReview gameId={products.id} />
                 {/* <FAQ /> */}
@@ -296,7 +296,7 @@ const NewFormTopup: React.FC<IFormProps> = ({ products, paymentsMethod }) => {
                 position: "fixed",
                 bottom: 0,
                 left: 0,
-                backgroundColor: "rgba(255,255,255,0.8)",
+                backgroundColor: "rgba(70,70,70,0.8)",
                 backdropFilter: "blur(10px)",
                 zIndex: 50,
                 padding: 4,
@@ -314,13 +314,13 @@ const NewFormTopup: React.FC<IFormProps> = ({ products, paymentsMethod }) => {
                 <Box sx={{ flex: "1" }}>
                   <Box>
                     <Typography
-                      variant="subtitle1"
+                      color={"white"}
+                      variant="body2"
                       component="div"
                       fontSize={12}
                       fontWeight={500}
                     >
-                      {data.product.name || "pilih denom"} x{" "}
-                      {data.quantity || 0} Qty
+                      {data.product.name || "pilih denom"}
                     </Typography>
                     <Box
                       sx={{
@@ -364,7 +364,7 @@ const NewFormTopup: React.FC<IFormProps> = ({ products, paymentsMethod }) => {
                         </Typography>
                         <Typography
                           variant="body2"
-                          color="text.secondary"
+                          color="#ffffffd0"
                           fontSize={12}
                         >
                           {data.paymentMethod.id

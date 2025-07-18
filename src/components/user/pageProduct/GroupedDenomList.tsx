@@ -80,7 +80,7 @@ const GroupedDenomList = ({ position, data, onChange, value }: any) => {
                 <Grid container spacing={3}>
                   {category.denoms.map((item: any) => (
                     <Grid key={item.id} item xs={6} md={4}>
-                      <a href="#quantity">
+                      <a href="#payment-method">
                         <Card
                           sx={{
                             display: "flex",
