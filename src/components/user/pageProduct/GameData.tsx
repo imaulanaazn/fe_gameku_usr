@@ -101,7 +101,7 @@ const GameData = ({ data, onChange, value, position }: any) => {
                   <FormControl fullWidth>
                     <InputLabel
                       id="demo-simple-select-label"
-                      sx={{ background: "white", color: "#EAEAEA" }}
+                      sx={{ background: "#161721", color: "#fb923ce6" }}
                     >
                       Server ID
                     </InputLabel>
@@ -110,7 +110,7 @@ const GameData = ({ data, onChange, value, position }: any) => {
                       id="demo-simple-select"
                       value={value.serverId}
                       label="Age"
-                      sx={{ border: "1px solid #EAEAEA", color: "#ffffff" }}
+                      sx={{ border: "1px solid #fb923ce6", color: "#ffffff" }}
                       onChange={(e) => onChange("serverId", e.target.value)}
                     >
                       {data.listServer.map((item: any) => (

@@ -18,65 +18,68 @@ import { useAuth } from "@/@core/hooks/useAuth";
 import { Avatar } from "@mui/material";
 
 interface Props {
-    hidden: boolean;
-    settings: Settings;
-    toggleNavVisibility: () => void;
-    saveSettings: (values: Settings) => void;
-    verticalNavMenuBranding?: (props?: any) => ReactNode;
+  hidden: boolean;
+  settings: Settings;
+  toggleNavVisibility: () => void;
+  saveSettings: (values: Settings) => void;
+  verticalNavMenuBranding?: (props?: any) => ReactNode;
 }
 
 // ** Styled Components
 const MenuHeaderWrapper = styled(Box)<BoxProps>(({ theme }) => ({
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    paddingRight: theme.spacing(4.5),
-    transition: "padding .25s ease-in-out",
-    minHeight: theme.mixins.toolbar.minHeight,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  paddingRight: theme.spacing(4.5),
+  transition: "padding .25s ease-in-out",
+  minHeight: theme.mixins.toolbar.minHeight,
 }));
 
 const HeaderTitle = styled(Typography)<TypographyProps>(({ theme }) => ({
-    fontWeight: 600,
-    lineHeight: "normal",
-    textTransform: "uppercase",
-    color: theme.palette.text.primary,
-    transition: "opacity .25s ease-in-out, margin .25s ease-in-out",
+  fontWeight: 600,
+  lineHeight: "normal",
+  textTransform: "uppercase",
+  color: theme.palette.text.primary,
+  transition: "opacity .25s ease-in-out, margin .25s ease-in-out",
 }));
 
 const StyledLink = styled("a")({
-    display: "flex",
-    alignItems: "center",
-    textDecoration: "none",
+  display: "flex",
+  alignItems: "center",
+  textDecoration: "none",
 });
 
 const VerticalNavHeader = (props: Props) => {
-    // ** Props
-    const { verticalNavMenuBranding: userVerticalNavMenuBranding } = props;
+  // ** Props
+  const { verticalNavMenuBranding: userVerticalNavMenuBranding } = props;
 
-    // ** Hooks
-    const theme = useTheme();
-    const { logoGasskeun } = useAuth();
+  // ** Hooks
+  const theme = useTheme();
+  const { logoGameku } = useAuth();
 
-    return (
-        <MenuHeaderWrapper className="nav-header" sx={{ pl: 6 }}>
-            {userVerticalNavMenuBranding ? (
-                userVerticalNavMenuBranding(props)
-            ) : (
-                <Link href="/" passHref>
-                    <Avatar
-                        src={logoGasskeun || ""}
-                        sx={{ width: 50, height: 50, img: { width: "100%", height: "100%", objectFit: "contain" } }}
-                    />
-                    {/* <StyledLink>
+  return (
+    <MenuHeaderWrapper className="nav-header" sx={{ pl: 6 }}>
+      {userVerticalNavMenuBranding ? (
+        userVerticalNavMenuBranding(props)
+      ) : (
+        <Link href="/" passHref>
+          <Avatar
+            src={logoGameku || ""}
+            sx={{
+              width: 50,
+              height: 50,
+              img: { width: "100%", height: "100%", objectFit: "contain" },
+            }}
+          />
+          {/* <StyledLink>
             <HeaderTitle variant='h6' sx={{ ml: 3 }}>
-              {logoGasskeun}
+              {logoGameku}
             </HeaderTitle>
           </StyledLink> */}
-                </Link>
-            )}
-        </MenuHeaderWrapper>
-    );
+        </Link>
+      )}
+    </MenuHeaderWrapper>
+  );
 };
 
 export default VerticalNavHeader;
-

@@ -35,7 +35,7 @@ const linkCepat = [
   {
     id: 5,
     name: "Reseller",
-    url: "https://reseller.gasskeuntopup.com/",
+    url: "https://reseller.topupgameku.shop/",
   },
   {
     id: 6,
@@ -113,7 +113,7 @@ const Footer = () => {
     <footer className="bg-darkPrimary pt-12 lg:pt-20">
       <Container className="bg-darkSecondary py-12 lg:py-20">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 justify-between gap-y-14 gap-x-5 md:gap-y-8 lg:gap-x-16">
-          {/* GASSKEUN TOP UP EXPLANATION FOOTER SECTION */}
+          {/* TOPUP GAMEKU EXPLANATION FOOTER SECTION */}
           <div className="col-start-1 col-end-3 md:col-end-4 lg:col-end-3">
             <h2 className="text-white font-bold text-lg uppercase">
               Tentang Topup Game-Ku

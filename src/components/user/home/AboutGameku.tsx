@@ -1,19 +1,19 @@
 import Container from "@/components/global/Container/Container";
 import React from "react";
-import AboutGasskeunButton from "./AboutGasskeunButton";
+import AboutGamekuButton from "./AboutGamekuButton";
 
-export default function AboutGasskeun() {
+export default function AboutGameku() {
   return (
     <section className="py-16 lg:py-24">
       <Container className={`h-max relative overflow-hidden transition-all`}>
         <div className="absolute top-0 left-0 w-full max-w-screen-2xl mx-auto px-4 sm:px-5 md:px-10 lg:px-16 xl:px-28 z-30">
           <h1 className="text-neutral-900 text-center max-w-3/4 max-auto font-bold text-sm md:text-lg">
             Top Up Mobile Legend, Free Fire, dan Game Lainnya Dengan Beragam
-            Metode Pembayaran di Gasskeuntopup
+            Metode Pembayaran di Topup Gameku
           </h1>
           <section id="intro">
             <p className="text-center text-sm mt-4">
-              Selamat datang di Gasskeuntopup, platform terbaik untuk top up
+              Selamat datang di Topup Gameku, platform terbaik untuk top up
               Mobile Legend, Free Fire, dan berbagai game lainnya. Kami
               menawarkan beragam metode pembayaran yang aman dan cepat untuk
               memastikan Anda bisa menikmati permainan tanpa hambatan.
@@ -21,10 +21,10 @@ export default function AboutGasskeun() {
           </section>
           <section id="benefits" className="mt-8">
             <h2 className="font-bold text-sm text-neutral-800">
-              Mengapa Memilih Gasskeuntopup?
+              Mengapa Memilih Topup Gameku?
             </h2>
             <p className="text-sm">
-              Gasskeuntopup adalah pilihan utama bagi gamers untuk top up dan
+              Topup Gameku adalah pilihan utama bagi gamers untuk top up dan
               beli voucher game karena beberapa alasan utama:
             </p>
             <ul className="list-disc mt-2 mt-2 list-inside">
@@ -67,7 +67,7 @@ export default function AboutGasskeun() {
           </section>
           <section id="how-to" className="mt-8">
             <h2 className="font-bold text-sm text-neutral-800">
-              Cara Top Up di Gasskeuntopup
+              Cara Top Up di Topup Gameku
             </h2>
             <p className="text-sm">
               Ikuti langkah-langkah berikut untuk melakukan top up:
@@ -77,7 +77,7 @@ export default function AboutGasskeun() {
                 {" "}
                 <h3 className="inline-block">
                   Masuk ke website{" "}
-                  <a href="https://gasskeuntopup.com">gasskeuntopup.com</a>
+                  <a href="https://topupgameku.shop">topupgameku.shop</a>
                 </h3>
               </li>
               <li className="text-sm">
@@ -131,7 +131,7 @@ export default function AboutGasskeun() {
           </section>
           <section id="games" className="mt-8">
             <h2 className="font-bold text-sm text-neutral-800">
-              Game yang Tersedia di Gasskeuntopup
+              Game yang Tersedia di Topup Gameku
             </h2>
             <p className="text-sm">
               Kami menyediakan layanan top up untuk berbagai game populer,
@@ -178,10 +178,10 @@ export default function AboutGasskeun() {
           </section>
           <section id="advantages" className="mt-8">
             <h2 className="font-bold text-sm text-neutral-800">
-              Keuntungan Menggunakan Gasskeuntopup
+              Keuntungan Menggunakan Topup Gameku
             </h2>
             <p className="text-sm">
-              Top up dan beli voucher di Gasskeuntopup menawarkan banyak
+              Top up dan beli voucher di Topup Gameku menawarkan banyak
               keuntungan:
             </p>
             <ul className="list-disc mt-2 list-inside">
@@ -248,7 +248,7 @@ export default function AboutGasskeun() {
                   </strong>
                 </dt>
                 <dd className="text-sm md:pl-0 md:col-span-7">
-                  Ikuti panduan di atas untuk melakukan top up di Gasskeuntopup.
+                  Ikuti panduan di atas untuk melakukan top up di Topup Gameku.
                 </dd>
               </div>
               <div className="py-2 space-y-2 md:grid md:grid-cols-12 md:gap-8 md:space-y-0">
@@ -307,7 +307,7 @@ export default function AboutGasskeun() {
             </dl>
           </section>
         </div>
-        <AboutGasskeunButton />
+        <AboutGamekuButton />
       </Container>
     </section>
   );

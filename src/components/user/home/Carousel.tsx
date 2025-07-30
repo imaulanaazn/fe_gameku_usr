@@ -69,7 +69,7 @@ const Carousel = ({ slides }: { slides: IImageCarousel[] }) => {
                   >
                     <Image
                       src={slide.imageUrl}
-                      alt="Slide Image Banner Promo Gasskeun Topup"
+                      alt="Slide Image Banner Promo Topup Gameku"
                       width={395}
                       height={170}
                       objectFit="contain"

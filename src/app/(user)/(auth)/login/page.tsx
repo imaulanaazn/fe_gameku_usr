@@ -52,7 +52,7 @@ const Login = async () => {
               src={"/images/gameku_logo.jpg"}
               width={120}
               height={120}
-              alt="gasskeun top up logo"
+              alt="topup gameku logo"
               className="mx-auto"
             />
             <p className="text-xs text-white text-left mt-16 mb-4">
@@ -73,9 +73,9 @@ export const generateMetadata = async () => {
   const meta = await sendRequest<IMeta>("/v1/meta?path=/login", {}, 3600);
   return {
     metadataBase: new URL(
-      process.env.NEXT_PUBLIC_HOST || "https://gasskeuntopup.com"
+      process.env.NEXT_PUBLIC_HOST || "https://topupgameku.shop"
     ),
-    title: meta.data.title + " - Gasskeun Topup",
+    title: meta.data.title + " - Topup Gameku",
     icons: {
       icon: {
         sizes: "32x32",
@@ -114,9 +114,9 @@ export const generateMetadata = async () => {
     keywords: JSON.parse(meta.data.keywords).join(","),
     authors: [
       {
-        name: "gasskeuntopup",
+        name: "topupgameku",
         url: new URL(
-          process.env.NEXT_PUBLIC_HOST || "https://gasskeuntopup.com"
+          process.env.NEXT_PUBLIC_HOST || "https://topupgameku.shop"
         ),
       },
     ],
@@ -124,17 +124,17 @@ export const generateMetadata = async () => {
       canonical: meta.data.path,
     },
     openGraph: {
-      title: meta.data.title + " - Gasskeun Topup",
+      title: meta.data.title + " - Topup Gameku",
       url: process.env.NEXT_PUBLIC_HOST + meta.data.path,
       type: "website",
-      siteName: "Gasskeun Topup",
+      siteName: "Topup Gameku",
       images: meta.data.image,
       description: meta.data.description,
     },
     twitter: {
       card: "summary_large_image",
       images: meta.data.image,
-      title: meta.data.title + " - Gasskeun Topup",
+      title: meta.data.title + " - Topup Gameku",
       description: meta.data.description,
     },
     robots: {

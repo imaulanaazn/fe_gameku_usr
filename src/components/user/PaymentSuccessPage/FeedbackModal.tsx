@@ -71,7 +71,7 @@ export default function FeedbackModal({ orderId }: { orderId?: string }) {
       elevation={0}
     >
       <Typography variant="body1" color="#ffffff" textAlign={"center"}>
-        Yay top up mu berhasil 🎉. Rate pelayanan kami dong :)
+        Yeey top up mu berhasil 🎉. Rate pelayanan kami dong :)
       </Typography>
       {/* Rating */}
       <Box

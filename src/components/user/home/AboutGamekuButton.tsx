@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-function AboutGasskeunButton() {
+function AboutGamekuButton() {
   const [show, setShowAbout] = useState(false);
   return (
     <>
@@ -34,4 +34,4 @@ function AboutGasskeunButton() {
   );
 }
 
-export default AboutGasskeunButton;
+export default AboutGamekuButton;

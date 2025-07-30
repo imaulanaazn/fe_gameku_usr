@@ -2,12 +2,12 @@
 
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-    siteUrl: "https://gasskeuntopup.com",
-    generateRobotsTxt: true,
-    exclude: ["/server-sitemap.xml", "/admin", "/admin/*"], // <= exclude here
-    robotsTxtOptions: {
-        additionalSitemaps: [
-            "https://gasskeuntopup.com/server-sitemap.xml", // <==== Add here
-        ],
-    },
+  siteUrl: "https://topupgameku.shop",
+  generateRobotsTxt: true,
+  exclude: ["/server-sitemap.xml", "/admin", "/admin/*"], // <= exclude here
+  robotsTxtOptions: {
+    additionalSitemaps: [
+      "https://topupgameku.shop/server-sitemap.xml", // <==== Add here
+    ],
+  },
 };

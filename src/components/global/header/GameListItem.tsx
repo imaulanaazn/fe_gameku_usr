@@ -16,7 +16,7 @@ const GameListItem: React.FC<IGameProps> = ({ data }) => {
       <div className="w-full relative flex items-center gap-3 p-1.5 hover:bg-white/10 group rounded-md">
         <Image
           src={data.logoUrl}
-          alt={`Logo Game Gasskeun Topup ${data.name}`}
+          alt={`Logo Game Topup Gameku ${data.name}`}
           width="10"
           height="10"
           sizes="5vh"

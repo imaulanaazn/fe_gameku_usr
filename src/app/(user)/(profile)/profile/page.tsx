@@ -28,7 +28,7 @@ export const generateMetadata: () => Promise<
     openGraph: {
       url: process.env.NEXT_PUBLIC_HOST + "/profile",
       type: "website",
-      siteName: "Gasskeun Topup",
+      siteName: "Topup Gameku",
       images: meta.data.image,
     },
     twitter: {

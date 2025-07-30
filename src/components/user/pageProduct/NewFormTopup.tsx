@@ -377,9 +377,9 @@ const NewFormTopup: React.FC<IFormProps> = ({ products, paymentsMethod }) => {
                         size="medium"
                         sx={{ width: "fit-content" }}
                         onClick={() => {
-                          data.paymentMethod.cd === "GASSKEUN_USER" &&
+                          data.paymentMethod.cd === "Gameku_USER" &&
                           balance < data.totalAmountBeforeFee
-                            ? toast.error("Gasskeun Coin mu Tidak Mencukupi")
+                            ? toast.error("Gameku Coin mu Tidak Mencukupi")
                             : setModalOpen(true);
                         }}
                         disabled={isDisabled}
@@ -398,9 +398,9 @@ const NewFormTopup: React.FC<IFormProps> = ({ products, paymentsMethod }) => {
               size="large"
               sx={{ marginTop: 4, display: { xs: "none", md: "block" } }}
               onClick={() => {
-                data.paymentMethod.cd === "GASSKEUN_USER" &&
+                data.paymentMethod.cd === "Gameku_USER" &&
                 balance < data.totalAmountBeforeFee
-                  ? toast.error("Gasskeun Coin mu Tidak Mencukupi")
+                  ? toast.error("Gameku Coin mu Tidak Mencukupi")
                   : setModalOpen(true);
               }}
               disabled={isDisabled}

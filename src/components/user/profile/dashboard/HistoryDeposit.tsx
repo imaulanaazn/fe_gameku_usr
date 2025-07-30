@@ -140,7 +140,7 @@ const HistoryDeposit = () => {
                     <div>
                       <p className="text-white/80 text-sm">Produk</p>
                     </div>
-                    <div className="text-white/80 text-sm">Gasskeun Coin</div>
+                    <div className="text-white/80 text-sm">Gameku Coin</div>
                   </div>
 
                   <div className="flex justify-between mt-2">
@@ -193,7 +193,7 @@ const HistoryDeposit = () => {
                         {item.invoiceId}
                       </td>
                       <td className="py-2 px-4 sm:py-2 sm:px-6 md:py-3 md:px-4 lg:py-2 lg:px-6 text-neutral-500 xl:text-base">
-                        Gasskeun Coin
+                        Gameku Coin
                       </td>
 
                       <td className="py-2 px-4 sm:py-2 sm:px-6 md:py-3 md:px-4 lg:py-2 lg:px-6 text-neutral-500 xl:text-base">

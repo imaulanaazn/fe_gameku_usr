@@ -12,7 +12,7 @@ import NewsVideo from "../../../components/user/home/NewsVideo";
 import { INewsVideos } from "@/interfaces/newsVideo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
-import AboutGasskeun from "../../../components/user/home/AboutGasskeun";
+// import AboutGameku from "../../../components/user/home/AboutGameku";
 import Script from "next/script";
 import { breadcrumbSchema, defaultCategory } from "./constants";
 
@@ -60,7 +60,7 @@ const Home = async () => {
           <ListGames key={index} title={data.name} data={data.games} />
         ))} */}
 
-        {/* <AboutGasskeun /> */}
+        {/* <AboutGameku /> */}
 
         {/* {youtubeVideo.data.length > 0 && (
           <NewsVideo videos={youtubeVideo.data} />
@@ -91,7 +91,7 @@ export const generateMetadata = async ({ params }: { params: string }) => {
   const meta = await sendRequest<IMeta>("/v1/meta?path=/", {}, 3600);
   return {
     metadataBase: new URL(
-      process.env.NEXT_PUBLIC_HOST || "https://gasskeuntopup.com"
+      process.env.NEXT_PUBLIC_HOST || "https://topupgameku.shop"
     ),
     title: meta.data.title,
     icons: {
@@ -132,9 +132,9 @@ export const generateMetadata = async ({ params }: { params: string }) => {
     keywords: JSON.parse(meta.data.keywords).join(","),
     authors: [
       {
-        name: "gasskeuntopup",
+        name: "topupgameku",
         url: new URL(
-          process.env.NEXT_PUBLIC_HOST || "https://gasskeuntopup.com"
+          process.env.NEXT_PUBLIC_HOST || "https://topupgameku.shop"
         ),
       },
     ],
@@ -145,7 +145,7 @@ export const generateMetadata = async ({ params }: { params: string }) => {
       title: meta.data.title,
       url: process.env.NEXT_PUBLIC_HOST,
       type: "website",
-      siteName: "Gasskeun Topup",
+      siteName: "Topup Gameku",
       images: meta.data.image,
       description: meta.data.description,
     },

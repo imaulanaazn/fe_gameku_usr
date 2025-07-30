@@ -42,7 +42,7 @@ const ListDenom: React.FC<IListDenomProps> = ({ products, defaultLogo }) => {
               <div className="w-7 h-7 rounded-lg flex justify-center">
                 <Image
                   src={prod.logoDenom || defaultLogo}
-                  alt="Logo Denom Gasskeun Topup"
+                  alt="Logo Denom Topup Gameku"
                   className="rounded-lg object-contain"
                   width="0"
                   height="0"

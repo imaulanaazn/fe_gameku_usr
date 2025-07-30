@@ -3,8 +3,8 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://gasskeuntopup.com
+Host: https://topupgameku.shop
 
 # Sitemaps
-Sitemap: https://gasskeuntopup.com/sitemap.xml
-Sitemap: https://gasskeuntopup.com/server-sitemap.xml
+Sitemap: https://topupgameku.shop/sitemap.xml
+Sitemap: https://topupgameku.shop/server-sitemap.xml

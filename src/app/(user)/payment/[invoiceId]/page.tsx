@@ -45,14 +45,14 @@ export const generateMetadata = async ({ params }: IParams) => {
   }
   return {
     metadataBase: new URL(
-      process.env.NEXT_PUBLIC_HOST || "https://gasskeuntopup.com"
+      process.env.NEXT_PUBLIC_HOST || "https://topupgameku.shop"
     ),
     title: `[${params.invoiceId}] ${meta.data.title}`,
     icons: meta.data.icon,
     openGraph: {
       url: process.env.NEXT_PUBLIC_HOST + "/register",
       type: "website",
-      siteName: "Gasskeun Topup",
+      siteName: "Topup Gameku",
       images: meta.data.image,
     },
     twitter: {

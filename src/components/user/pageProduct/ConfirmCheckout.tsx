@@ -85,7 +85,7 @@ const ConfirmCheckout = ({
     const res = await req.json();
     if (req.ok) {
       setMsg(
-        dataCheckout.paymentMethod.cd === "GASSKEUN"
+        dataCheckout.paymentMethod.cd === "topupgameku"
           ? "Orderan berhasil dibayar"
           : "Order Berhasil dibuat"
       );
@@ -396,7 +396,7 @@ const ConfirmCheckout = ({
                 </Box>
               )}
               <Divider sx={{ marginY: 6, borderColor: "#ffffff30" }} />
-              {dataCheckout.paymentMethod.cd === "GASSKEUN" && (
+              {dataCheckout.paymentMethod.cd === "topupgameku" && (
                 <Box
                   sx={{
                     display: "flex",
@@ -441,11 +441,11 @@ const ConfirmCheckout = ({
                 sx={{ marginTop: 4 }}
                 onClick={() => handleCheckout()}
                 disabled={
-                  dataCheckout.paymentMethod.cd === "GASSKEUN" &&
+                  dataCheckout.paymentMethod.cd === "topupgameku" &&
                   balance < totalCheckout
                 }
               >
-                {dataCheckout.paymentMethod.cd === "GASSKEUN"
+                {dataCheckout.paymentMethod.cd === "topupgameku"
                   ? "Bayar Sekarang"
                   : "Beli Sekarang"}
               </Button>

@@ -41,7 +41,7 @@ const accordionTitle = (category: string) => {
       title = "Virtual Account";
       break;
     default:
-      title = "Saldo Gasskeun";
+      title = "Saldo Gameku";
       break;
   }
 

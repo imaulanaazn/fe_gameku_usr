@@ -42,7 +42,7 @@ const Dashboard = () => {
   const inputFile = useRef(null);
   const [logo, setLogo] = useState("");
   const [userFund, setUserFund] = useState({
-    name: "Gasskeun Coin",
+    name: "Gameku Coin",
     balance: 0,
   });
 

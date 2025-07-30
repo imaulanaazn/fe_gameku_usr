@@ -43,7 +43,7 @@
 
 // export const generateMetadata = () => {
 //   return {
-//     title: "Eksplorasi Artikel: Semua Posting di GasskeunTopup",
+//     title: "Eksplorasi Artikel: Semua Posting di TopupGameku",
 //     description: "Test",
 //   };
 // };

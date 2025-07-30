@@ -6,7 +6,7 @@ const nextConfig = {
       "firebasestorage.googleapis.com",
       "img.youtube.com",
       "localhost",
-      "image.gasskeuntopup.com",
+      "image.topupgameku.shop",
       "cdn.aplikasikreasi.id",
       "i.ibb.co.com",
       "ik.imagekit.io",

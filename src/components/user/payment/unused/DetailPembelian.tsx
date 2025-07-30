@@ -22,7 +22,7 @@ const DetailPembelian: React.FC<IDetailPembelianProps> = ({ invoice }) => {
   //             <div className="w-20 h-20">
   //                 <Image
   //                     src={invoice.logoGame}
-  //                     alt="Logo Gasskeun Topup"
+  //                     alt="Logo Topup Gameku"
   //                     width="0"
   //                     height="0"
   //                     sizes="100vw"

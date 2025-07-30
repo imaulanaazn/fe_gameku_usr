@@ -264,7 +264,7 @@ export default function SideBarAdmin() {
             {logo.logo && (
               <Image
                 src={logo.logo}
-                alt="Logo Gasskeun Topup"
+                alt="Logo Topup Gameku"
                 className="rounded-lg object-contain"
                 width="0"
                 height="0"
@@ -278,7 +278,7 @@ export default function SideBarAdmin() {
               !showFullSidebar && "scale-0 opacity-0 -translate-x-full"
             }`}
           >
-            Gasskeun Topup
+            Topup Gameku
           </h6>
         </Link>
       </div>

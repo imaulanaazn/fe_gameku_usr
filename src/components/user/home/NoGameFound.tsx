@@ -12,7 +12,7 @@ const NoGameFound = () => {
             </h2>
             <p className="mt-3 lg:mt4 text-white max-w-lg">
               Yuk segera hubungi kami dan beritahu kami tentang keluhan /
-              saranmu kepada gasskeun top up agar kami bisa melayani pelanggan
+              saranmu kepada topup gameku agar kami bisa melayani pelanggan
               lebih baik lagi.
             </p>
             <button className="bg-white text-primary-900 mt-8 lg:text-sm rounded-md py-2 px-4 lg:py-3 lg:px-5 font-medium hover:bg-black hover:text-white">

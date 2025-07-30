@@ -74,7 +74,7 @@ export default function Testimoni() {
             textAlign="center"
             sx={{ fontSize: "2rem", fontWeight: 700, marginBottom: 4 }}
           >
-            Testimoni Gasskeun Topup
+            Testimoni Topup Gameku
           </Typography>
           <Typography
             variant="body1"
@@ -85,8 +85,8 @@ export default function Testimoni() {
               margin: "auto",
             }}
           >
-            Terimakasih kepada para pelanggan yang sudah mempercayakan gasskeun
-            topup sebagai tempat topup digital item mereka
+            Terimakasih kepada para pelanggan yang sudah mempercayakan topup
+            gameku sebagai tempat topup digital item mereka
           </Typography>
 
           <Grid container spacing={6} mt={12}>

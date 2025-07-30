@@ -213,7 +213,7 @@ const Header = () => {
                   {logo && logo.logo && (
                     <Image
                       src={logo.logo}
-                      alt="Logo Gasskeun Topup"
+                      alt="Logo Topup Gameku"
                       width="0"
                       height="0"
                       sizes="10vw"

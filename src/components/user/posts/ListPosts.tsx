@@ -66,7 +66,7 @@ const ListPosts: React.FC<{
           <div className=" w-1/4">
             <Image
               src={blog.img}
-              alt="Logo Gasskeun Topup"
+              alt="Logo Topup Gameku"
               width="0"
               height="0"
               sizes="100vw"

@@ -133,7 +133,7 @@ const ActionPayment: React.FC<IActionPaymentProps> = ({ invoice }) => {
   //         <div className=" w-16">
   //           <Image
   //             src={invoice.logoPaymentMethod}
-  //             alt="Logo Metode Pembayaran Gasskeun Topup"
+  //             alt="Logo Metode Pembayaran Topup Gameku"
   //             width="0"
   //             height="0"
   //             sizes="100vw"

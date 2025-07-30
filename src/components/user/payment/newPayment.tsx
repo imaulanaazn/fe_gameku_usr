@@ -31,6 +31,9 @@ import { faMoneyBill1Wave } from "@fortawesome/free-solid-svg-icons";
 import PaymentInstructionModal from "./PaymentInstructionModal";
 import { faCopy } from "@fortawesome/free-regular-svg-icons";
 import FeedbackModal from "../PaymentSuccessPage/FeedbackModal";
+import Image from "next/image";
+import { AsyncResource } from "async_hooks";
+import { toast } from "react-toastify";
 
 const getStatusPayment = (status: OrderStatuses, expiredAt: string) => {
   let msg;
@@ -62,7 +65,7 @@ const getStatusPayment = (status: OrderStatuses, expiredAt: string) => {
       break;
     case OrderStatuses.SUCCESS:
       msg =
-        "Pesananmu sudah selesai, terima kasih sudah order denom di GASSKEUN TOPUP";
+        "Pesananmu sudah selesai, terima kasih sudah order denom di Topup Gameku";
       severity = "success";
       msgBox = "Berhasil";
       break;
@@ -117,7 +120,7 @@ const NewPayment = ({ invoices }: { invoices: IInvoice }) => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const { Canvas } = useQRCode();
-  const [logoGasskeun, setLogoGasskeun] = useState("");
+  const [logoGameku, setLogoGameku] = useState("");
   const [order, setOrder] = useState<IInvoice | null>(invoices);
   const [isFinished, setIsFinished] = useState(false);
   const canvasRef = useRef<HTMLDivElement>(null);
@@ -127,21 +130,27 @@ const NewPayment = ({ invoices }: { invoices: IInvoice }) => {
     setOpen(bool);
   };
 
-  const onQRDownload = () => {
-    if (canvasRef.current) {
-      const canvas = canvasRef.current.getElementsByTagName("canvas")[0];
-      canvas.toBlob((blob) => {
-        if (blob) {
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement("a");
-          a.href = url;
-          a.download = "qr-code.png";
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-          URL.revokeObjectURL(url);
-        }
-      });
+  const onQRDownload = async (url: string) => {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const blob = await response.blob();
+
+      if (blob) {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "qr-code.png";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
+    } catch (error) {
+      console.error("Error downloading QR code:", error);
+      toast.error("Gagal mengunduh QR Code. Silakan coba lagi.");
     }
   };
 
@@ -160,7 +169,7 @@ const NewPayment = ({ invoices }: { invoices: IInvoice }) => {
 
       const res = await req.json();
       if (req.ok) {
-        setLogoGasskeun(res[0].value);
+        setLogoGameku(res[0].value);
       }
     };
     getLogo();
@@ -206,7 +215,7 @@ const NewPayment = ({ invoices }: { invoices: IInvoice }) => {
   return (
     <>
       {order?.order.status === OrderStatuses.SUCCESS && (
-        <FeedbackModal orderId={invoices?.order.invoiceId} />
+        <FeedbackModal orderId={invoices?.order.id} />
       )}
 
       <PaymentInstructionModal
@@ -777,7 +786,7 @@ const NewPayment = ({ invoices }: { invoices: IInvoice }) => {
                           </Typography>
                           <Box>
                             <Avatar
-                              title="Logo Gasskeun Topup"
+                              title="Logo Topup Gameku"
                               src={order.payment?.logo}
                               variant="rounded"
                               sx={{
@@ -808,7 +817,7 @@ const NewPayment = ({ invoices }: { invoices: IInvoice }) => {
                                     backgroundColor: `white`,
                                   }}
                                 >
-                                  <Canvas
+                                  {/* <Canvas
                                     text={order.payment.action.qrString}
                                     options={{
                                       errorCorrectionLevel: "M",
@@ -818,18 +827,33 @@ const NewPayment = ({ invoices }: { invoices: IInvoice }) => {
                                       quality: 1,
                                     }}
                                     // logo={{
-                                    //   src: logoGasskeun as string,
+                                    //   src: logoGameku as string,
                                     //   options: {
                                     //     width: 50,
                                     //   },
                                     // }}
+                                  /> */}
+                                  <Image
+                                    src={order.payment.action.qrString}
+                                    width={400}
+                                    height={400}
+                                    alt="QR Image"
                                   />
                                 </Avatar>
                                 <Button
                                   variant="contained"
                                   color="primary"
                                   sx={{ marginTop: 4 }}
-                                  onClick={onQRDownload}
+                                  onClick={() => {
+                                    if (
+                                      "qrString" in order.payment.action &&
+                                      order.payment.action.qrString
+                                    ) {
+                                      onQRDownload(
+                                        order.payment.action.qrString
+                                      );
+                                    }
+                                  }}
                                 >
                                   Download QR Code
                                 </Button>

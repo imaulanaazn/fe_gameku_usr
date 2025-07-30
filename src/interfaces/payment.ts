@@ -42,6 +42,7 @@ interface IPaymentDetail {
 // }
 
 interface Order {
+  id: string;
   invoiceId: string;
   totalAmt: number;
   feeAmt: number;

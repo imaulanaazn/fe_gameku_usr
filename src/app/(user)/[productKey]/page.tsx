@@ -67,7 +67,7 @@ const Page = () => {
       cache: "no-store",
       next: { revalidate: 60 },
       headers: {
-        "x-gasskeun-sign": sign,
+        "x-gameku-sign": sign,
         "ngrok-skip-browser-warning": "true",
       },
     });

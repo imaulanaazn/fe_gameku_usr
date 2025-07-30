@@ -214,7 +214,7 @@ export default function TopUpSuccessCard(invoice: any) {
                 {" "}
                 {invoice.game}{" "}
               </Typography>{" "}
-              anda Terimakasih telah menggunakan layanan gasskeun top up. kami
+              anda Terimakasih telah menggunakan layanan topup gameku. kami
               harap anda puas dengan pelayanan kami
             </Typography>
             <Link href="/layanan">

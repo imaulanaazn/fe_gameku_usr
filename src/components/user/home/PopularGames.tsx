@@ -12,7 +12,7 @@ interface IPopularGamesProps {
 }
 
 const PopularGames: React.FC<IPopularGamesProps> = ({ popularGames }) => {
-  const [limit, setLimit] = useState(9);
+  const [limit, setLimit] = useState(12);
   const limitedPopularGames = popularGames.slice(0, limit);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
@@ -23,15 +23,15 @@ const PopularGames: React.FC<IPopularGamesProps> = ({ popularGames }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  useEffect(() => {
-    if (screenWidth < 600) {
-      setLimit(9);
-    } else if (screenWidth < 900) {
-      setLimit(9);
-    } else {
-      setLimit(12);
-    }
-  }, [screenWidth]);
+  // useEffect(() => {
+  //   if (screenWidth < 600) {
+  //     setLimit(9);
+  //   } else if (screenWidth < 900) {
+  //     setLimit(9);
+  //   } else {
+  //     setLimit(12);
+  //   }
+  // }, [screenWidth]);
 
   const handleClickExpandGame = () => {
     if (limit > popularGames.length) {
