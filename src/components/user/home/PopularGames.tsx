@@ -54,7 +54,7 @@ const PopularGames: React.FC<IPopularGamesProps> = ({ popularGames }) => {
         <div className="mt-4 md:mt-6 lg:mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
           {limitedPopularGames.map((data) => (
             <>
-              <GameHorizontal data={data} />
+              <GameHorizontal data={data} key={data.id}/>
             </>
           ))}
         </div>
