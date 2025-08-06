@@ -52,7 +52,7 @@ const ListGames: React.FC<ListGameProps> = ({ title, data }) => {
           {limit < data.length && (
             <button
               onClick={handleClickExpandGame}
-              className="flex items-center gap-2 bg-darkPrimary text-sm text-primary-900 rounded-md py-2 px-4 font-medium hover:bg-primary-100"
+              className="flex items-center gap-2 bg-darkPrimary text-sm text-primary-900 rounded-md py-2 px-4 font-medium hover:bg-darkSecondary"
             >
               Muat lebih banyak
               <FontAwesomeIcon icon={faChevronDown} className="text-sm" />
